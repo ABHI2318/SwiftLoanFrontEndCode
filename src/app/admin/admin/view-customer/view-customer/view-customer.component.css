@@ -1,0 +1,135 @@
+/* Customer Container */
+.loan-officers-container {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 30px auto;
+  padding: 30px;
+  width: 95%;
+  max-width: 1200px;
+}
+
+/* Section Title */
+.text-center {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Grid Layout for Customers */
+.loan-officers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Individual Customer Card */
+.loan-officer-card {
+  background: linear-gradient(to bottom right, #f0f4f8, #e3ebf2);
+  border: 1px solid #dce4eb;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.loan-officer-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Customer Name */
+.officer-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ee9bef;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Customer Details */
+.officer-details p {
+  margin: 8px 0;
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Action Buttons (optional for future use) */
+.officer-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.btn {
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-outline-warning {
+  border-color: #ffc107;
+  color: #ffc107;
+}
+
+.btn-outline-warning:hover {
+  background-color: #ffc107;
+  color: #fff;
+}
+
+.btn-outline-danger {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+/* Pagination Controls */
+.pagination-controls {
+  margin-top: 20px;
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pagination-controls button {
+  padding: 8px 16px;
+  font-weight: bold;
+}
+
+.pagination-controls span {
+  font-size: 1rem;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .loan-officer-card {
+    padding: 15px;
+  }
+
+  .officer-name {
+    font-size: 1.2rem;
+  }
+
+  .officer-details p {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    font-size: 0.85rem;
+  }
+
+  .pagination-controls {
+    font-size: 0.9rem;
+  }
+}

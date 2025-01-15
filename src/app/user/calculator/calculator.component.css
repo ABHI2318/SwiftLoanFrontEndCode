@@ -1,0 +1,122 @@
+/* Container Styles */
+.container-fluid {
+ font-family: 'Josefin Sans', sans-serif;
+ padding: 40px;
+ background: white; /* Lighter gradient */
+ border-radius: 12px;
+ box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+}
+
+.text-center h3 {
+ font-size: 32px;
+ font-weight: bold;
+ color: #9b69b1; /* Lighter magenta shade */
+ margin-bottom: 20px;
+}
+
+hr {
+ border: 1px solid #e1aad5; /* Light magenta line */
+}
+
+/* Flexbox Row */
+.row {
+ display: flex;
+ justify-content: space-between;
+ gap: 30px;
+}
+
+/* Card Styles */
+.card {
+ border-radius: 12px;
+ box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+ background: linear-gradient(to bottom right, rgba(243, 212, 246, 0.9), rgba(255, 255, 255, 0.9)); /* Semi-transparent gradient */
+ border: 1px solid #e1aad5; /* Light magenta border */
+ padding: 20px;
+ width: 100%;
+}
+
+.card-body {
+ display: flex;
+ flex-direction: column;
+ gap: 20px;
+}
+
+.card-body p {
+ font-size: 14px;
+ font-weight: bold;
+ color: #9b69b1; /* Lighter magenta for text */
+}
+
+.card-body input, .card-body select {
+ border-radius: 6px;
+ border: 1px solid #e1aad5; /* Light magenta border */
+ background-color: rgba(255, 255, 255, 0.8); /* Transparent white */
+ color: #060303; /* Black text */
+ font-size: 15px;
+ padding: 10px;
+ width: 100%;
+ transition: all 0.3s ease;
+}
+
+.card-body input:focus, .card-body select:focus {
+ border-color: #e1aad5;
+ background-color: #ffffff;
+ box-shadow: 0 0 5px rgba(225, 170, 213, 0.5); /* Light magenta shadow on focus */
+ outline: none;
+}
+
+.card-body button {
+ background-color: #e1aad5; /* Light magenta background */
+ border: none;
+ border-radius: 6px;
+ color: #ffffff;
+ font-size: 16px;
+ font-weight: bold;
+ text-transform: uppercase;
+ padding: 10px 20px;
+ cursor: pointer;
+ transition: all 0.3s ease;
+}
+
+.card-body button:hover {
+ background-color: #d98cdc; /* Darker magenta on hover */
+}
+
+.card-body button:focus {
+ outline: none;
+ box-shadow: 0 0 5px rgba(225, 170, 213, 0.5); /* Light magenta glow when focused */
+}
+
+/* EMI Result Card */
+.card-body div h4 {
+ font-size: 18px;
+ font-weight: bold;
+ color: #9b69b1; /* Lighter magenta for headings */
+}
+
+.card-body div b {
+ font-size: 18px;
+ color: #060303; /* Black text for results */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+ .container-fluid {
+   padding: 20px;
+ }
+
+ .row {
+   flex-direction: column;
+   align-items: center;
+ }
+
+ .card {
+   width: 100%;
+ }
+
+ .card-body button {
+   font-size: 14px;
+   padding: 8px 15px;
+ }
+
+}

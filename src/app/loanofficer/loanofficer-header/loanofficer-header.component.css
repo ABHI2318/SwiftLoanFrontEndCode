@@ -1,0 +1,119 @@
+* {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
+
+/* Body */
+body {
+ font-family: Arial, sans-serif;
+ /* Light pink-lavender background */
+ background-color: #f7e6f7;
+ color: #4a2b4a; /* Darker purple for text */
+}
+
+/* Navbar Styles */
+.navbar {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ /* Pink-lavender navbar background */
+ background-color: #d98cdc;
+ padding: 1rem 2rem;
+ box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+ /* White text for contrast */
+ color: #fff;
+}
+
+.navbar-logo {
+ display: flex;
+ align-items: center;
+}
+
+.navbar-logo img {
+ height: 40px;
+ margin-right: 10px;
+}
+
+/* Navbar Menu */
+.navbar-menu {
+ display: flex;
+ gap: 1.5rem;
+}
+
+.navbar-menu a {
+ text-decoration: none;
+ color: #fff; /* White text for menu items */
+ font-size: 1rem;
+ transition: color 0.3s ease;
+}
+
+/* Hover color slightly lighter or different accent */
+.navbar-menu a:hover {
+ color: #f0aaf0; 
+}
+
+/* Profile Menu */
+.profile {
+ margin-top: 10px;
+ position: relative;
+}
+
+.profile-dropdown {
+ display: none;
+ position: absolute;
+ top: 100%;
+ right: 0;
+ background-color: #fff;
+ box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+ border-radius: 8px;
+ width: 200px;
+ padding: 0.5rem 0;
+ z-index: 10;
+}
+
+.profile-dropdown a {
+ display: block;
+ padding: 0.75rem 1rem;
+ text-decoration: none;
+ color: #4a2b4a;
+ font-size: 0.875rem;
+ white-space: nowrap;
+ transition: background-color 0.3s ease;
+}
+
+.profile-dropdown a:hover {
+ /* Light pink-lavender hover background */
+ background-color: #f7e6f7;
+}
+
+.profile:hover .profile-dropdown {
+ display: block;
+}
+
+/* Logout Button */
+.logout button {
+ /* Main pink-lavender accent */
+ background-color: #c06ac0;
+ color: #fff;
+ border: none;
+ padding: 0.75rem 1.5rem;
+ border-radius: 25px;
+ cursor: pointer;
+ font-size: 1.2rem;
+ transition: background-color 0.3s ease;
+}
+
+.logout button:hover {
+ /* Slightly darker shade for hover */
+ background-color: #a858a8;
+}
+
+/* Navbar Right Section */
+.navbar .right {
+ display: flex;
+ flex-direction: row;
+ width: 12vw;
+ flex-wrap: wrap;
+ justify-content: space-between;
+}

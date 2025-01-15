@@ -1,0 +1,59 @@
+<div class="container mt-5">
+  <h1 class="mb-4">Loan Requests</h1>
+
+  <!-- Card Grid -->
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 loan-requests">
+    <div class="col" *ngFor="let loan of loans">
+      <div class="card border-{{ getStatusColor(loan.loanstatus) }}">
+        <div class="card-body">
+          <h5 class="card-title">Loan ID: {{ loan.loanid }}</h5>
+          <p class="card-text">
+            <strong>Amount:</strong> {{ loan.loanamount | currency:'INR':'symbol' }}
+          </p>
+          <p class="card-text">
+            <strong>Monthly Repayment:</strong>
+            {{ loan.monthlyRepayment | currency:'INR':'symbol' }}
+          </p>
+          <p class="card-text">
+            <strong>Status: </strong>
+            <span class="badge bg-{{ getStatusColor(loan.loanstatus) }}">
+              {{ loan.loanstatus }}
+            </span>
+          </p>
+          <button
+            *ngIf="loan.loanstatus === 'REJECTED'"
+            (click)="fetchRemarks(loan.loanid)"
+            class="btn btn-sm"
+            style="background-color: #1E90FF; color: #fff;"
+          >
+            View Remarks
+          </button>
+          <div *ngIf="rejectionRemarks[loan.loanid]" class="mt-2 text-danger">
+            <strong>Remarks:</strong> {{ rejectionRemarks[loan.loanid] }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Pagination -->
+  <div class="pagination-container">
+    <nav *ngIf="totalPages > 1">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <button class="page-link" (click)="changePage(currentPage - 1)">Previous</button>
+        </li>
+        <li
+          class="page-item"
+          *ngFor="let page of paginationArray"
+          [class.active]="page === currentPage"
+        >
+          <button class="page-link" (click)="changePage(page)">{{ page }}</button>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <button class="page-link" (click)="changePage(currentPage + 1)">Next</button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

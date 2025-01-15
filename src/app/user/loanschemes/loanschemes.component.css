@@ -1,0 +1,253 @@
+/*************
+ * Container styles
+ *************/
+ .loan-schemes-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: white; /* A soft pastel background */
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+/*************
+ * Card styling
+ *************/
+.card {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+/* Example of a custom border color for the card */
+.border-custom {
+  border: 1px solid #af4cbf; /* Purple border */
+}
+
+/*************
+ * Card text
+ *************/
+.card-title {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+/*************
+ * Buttons
+ *************/
+.btn-primary.btn-sm {
+  background-color: #af4cbf; /* Purple button */
+  border-color: #af4cbf;
+}
+.btn-primary.btn-sm:hover {
+  background-color: #921ea7;
+  border-color: #921ea7;
+}
+
+/*************
+ * Pagination & other UI controls
+ *************/
+.pagination-controls {
+  margin-top: 1rem;
+}
+
+.page-size-container,
+.page-info {
+  margin-top: 1rem;
+}
+
+/*************
+ * Media queries (optional)
+ *************/
+@media (max-width: 768px) {
+  .loan-schemes-container {
+    padding: 1rem;
+  }
+}
+
+/*modal css */
+/* Modal Styles */
+.custom-modal-content {
+  background: linear-gradient(to bottom right, #f3d4f6, #ffffff); /* Lighter gradient */
+  border-radius: 12px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+  color: #120808; /* Text color */
+  padding: 20px;
+}
+
+.custom-modal-header {
+  border-bottom: none;
+  background-color: #f3d4f6;
+  border-radius: 12px 12px 0 0;
+}
+
+.custom-modal-body {
+  padding: 20px;
+}
+
+h1.modal-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #9b69b1; /* Lighter magenta shade for title */
+  text-align: center;
+}
+
+/* Form Styles */
+form.glass-effect {
+  background: rgba(255, 255, 255, 0.8); /* Glass effect */
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+}
+
+label.form-label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #9b69b1; /* Lighter magenta shade for labels */
+  margin-bottom: 5px;
+  display: block;
+}
+
+input.form-control {
+  border-radius: 6px;
+  border: 1px solid #e1aad5; /* Light magenta border for form elements */
+  background-color: rgba(255, 255, 255, 0.8); /* Lighter transparent white */
+  color: #060303; /* Black text */
+  font-size: 15px;
+  padding: 10px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+input.form-control:focus {
+  border-color: #e1aad5;
+  background-color: #ffffff; /* Solid white background on focus */
+  box-shadow: 0 0 5px rgba(225, 170, 213, 0.5); /* Light magenta shadow on focus */
+  outline: none;
+}
+
+button.btn-magenta {
+  background-color: #e1aad5; /* Light magenta button background */
+  border: none;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  transition: all 0.3s ease;
+}
+
+button.btn-magenta:hover {
+  background-color: #d98cdc; /* Darker magenta on hover */
+}
+
+button.btn-close {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  color: #120808;
+  cursor: pointer;
+}
+
+button.btn-close:hover {
+  color: #9b69b1;
+}
+
+button.btn-secondary {
+  background-color: #f3d4f6;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  color: #120808;
+}
+
+button.btn-secondary:hover {
+  background-color: #e1aad5; /* Light magenta hover */
+  color: #ffffff;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .custom-modal-content {
+    padding: 15px;
+  }
+
+  form.glass-effect {
+    padding: 15px;
+  }
+
+  h1.modal-title {
+    font-size: 20px;
+  }
+
+  button.btn-magenta {
+    font-size: 14px;
+  }
+}
+
+
+/*************
+ * Pagination
+ *************/
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+  gap: 10px; /* Space between buttons */
+}
+
+.pagination-controls a {
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #007bff; /* Default blue text */
+  border: 1px solid #dee2e6; /* Light gray border */
+  padding: 8px 16px;
+  border-radius: 5px;
+  background-color: white;
+  transition: all 0.2s ease;
+}
+
+.pagination-controls a:hover {
+  background-color: #f8f9fa; /* Light gray background on hover */
+  border-color: #adb5bd; /* Slightly darker gray border */
+}
+
+.pagination-controls .active {
+  background-color: #007bff; /* Blue background for active page */
+  color: white;
+  border-color: #007bff; /* Blue border */
+}
+
+.pagination-controls .active:hover {
+  background-color: #0056b3; /* Darker blue when hovering active page */
+}
+
+.pagination-controls .disabled {
+  color: #6c757d; /* Gray text for disabled buttons */
+  pointer-events: none; /* Prevent clicks */
+  background-color: #e9ecef; /* Gray background for disabled state */
+  border-color: #dee2e6;
+}
+
+/* Responsive Pagination */
+@media (max-width: 768px) {
+  .pagination-controls a {
+    padding: 6px 12px; /* Smaller padding for mobile devices */
+    font-size: 0.875rem; /* Slightly smaller font size */
+  }
+}
+
+.is-invalid {
+  border-color: #dc3545;
+}
+
+.invalid-feedback {
+  color: #dc3545;
+  font-size: 0.875em;
+}
+

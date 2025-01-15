@@ -1,0 +1,156 @@
+/* 
+body {
+  background-color: #f5f5f5;
+  font-family: 'Arial', sans-serif;
+}
+
+
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+  border: none;
+  background-color: #ffffff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+.card-text {
+  font-size: 16px;
+  color: #6c757d;
+  margin-bottom: 1.5rem;
+}
+
+
+.card-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2d88b7; 
+  margin-bottom: 1rem;
+}
+
+
+.btn-custom {
+  font-weight: 500;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: none;
+  background: linear-gradient(135deg, #4e73df, #1cc88a);
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+
+.btn-custom:hover {
+  background: linear-gradient(135deg, #2e59d9, #17a673);
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+
+@media (max-width: 768px) {
+  .row-cols-md-3 {
+    row-gap: 2rem;
+  }
+} */
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f5f7;
+}
+
+/* Admin Dashboard Styling */
+.admin-dashboard {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  margin-top: 130px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Welcome Section */
+.welcome-section {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.welcome-title {
+  font-size: 2rem;
+  color: #5a2a78;
+  margin-bottom: 10px;
+}
+
+.welcome-subtitle {
+  font-size: 1.2rem;
+  color: #666666;
+}
+
+/* Overview Section */
+.overview {
+  margin-bottom: 30px;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  color: #333333;
+  margin-bottom: 20px;
+}
+
+.statistics {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.stat-box {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  flex: 1 1 calc(25% - 20px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.stat-box h4 {
+  font-size: 1.2rem;
+  color: #5a2a78;
+  margin-bottom: 10px;
+}
+
+.stat-box p {
+  font-size: 1rem;
+  color: #666666;
+}
+
+/* Dynamic Sections */
+.section-content {
+  margin-bottom: 30px;
+}
+
+.hidden {
+  display: none;
+}
+
+.scheme-box, .officer-box, .request-box, .customer-box {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.scheme-details, .officer-details, .request-details, .customer-details {
+  font-size: 0.9rem;
+  color: #666666;
+}

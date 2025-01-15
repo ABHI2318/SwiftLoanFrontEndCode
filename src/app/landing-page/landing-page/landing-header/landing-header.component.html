@@ -1,0 +1,45 @@
+<div class="navbar"> 
+  <!-- Logo on the left --> 
+  <div class="navbar-logo"> 
+    <img src="assets/swift.jpeg" alt="Loan Application Logo" /> 
+    <span>SwiftLoan</span> 
+   
+  </div> 
+
+  <!-- Links on the right --> 
+  <ul class="navbar-links"> 
+    <li class="nav-item dropdown"> 
+     <!--  <a 
+        class="nav-link dropdown-toggle text-uppercase fw-bold" 
+        href="#" 
+        id="signupDropdown" 
+        role="button" 
+        data-bs-toggle="dropdown" 
+        aria-expanded="false" 
+      > 
+        SignUp 
+      </a>  -->
+      <ul class="dropdown-menu shadow-lg border-0 rounded-3" aria-labelledby="signupDropdown"> 
+        <li> 
+          <a routerLink="register" class="dropdown-item d-flex align-items-center gap-2"> 
+            <i class="bi bi-person-plus"></i> Customer Register 
+          </a> 
+        </li> 
+      </ul> 
+    </li> 
+    <li> 
+      <a routerLink="login" class="nav-link">Login</a> 
+    </li> 
+    <li> 
+      <a routerLink="calculator" class="nav-link">Emi Calculator</a> 
+    </li>
+    <li>
+      <a routerLink="register" class="nav-link">Customer SignUp</a>
+    </li>
+    <li> 
+      <a routerLink="welcome-page" class="nav-link">Home</a> 
+    </li> 
+  </ul> 
+</div> 
+ 
+<router-outlet></router-outlet>

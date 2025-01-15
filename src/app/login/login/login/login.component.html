@@ -1,0 +1,43 @@
+<div class="login-container"> 
+  <!-- Information Box on the Left --> 
+  <div class="info-box"> 
+    <h2>Why Choose Swift Loan?</h2> 
+    <ul> 
+      <li><strong>Fast Approval:</strong> Instant loan approval within minutes.</li> 
+      <li><strong>Low Interest Rates:</strong> Enjoy some of the lowest rates in the market.</li> 
+      <li><strong>Secure Transactions:</strong> Your data is encrypted, ensuring top-notch security.</li> 
+      <li><strong>Easy Application:</strong> Apply with just a few simple steps, no paperwork.</li> 
+    </ul> 
+    <h3>Our Security Features</h3> 
+    <p>Your personal and financial data is protected with the latest encryption technologies. We comply with industry standards to ensure your peace of mind.</p> 
+  </div> 
+ 
+  <!-- Login Box on the Right --> 
+  <div class="login-box"> 
+    <h2>Login</h2> 
+    <form [formGroup]="loginForm" (ngSubmit)="logIn()"> 
+      <div class="input-container"> 
+        <input type="text" placeholder="Enter your username" formControlName="username" class="input-field" /> 
+      </div> 
+      <div class="input-container"> 
+        <input type="password" placeholder="Enter your password" formControlName="password" class="input-field" /> 
+      </div> 
+ 
+      <!-- CAPTCHA --> 
+      <div class="captcha-container"> 
+        <div class="captcha-box"> 
+          <span [innerHTML]="captchaText" class="captcha-text"></span> 
+          <button type="button" (click)="generateCaptcha()" class="refresh-btn">↻</button> 
+        </div> 
+        <input type="text" placeholder="Enter CAPTCHA" formControlName="captchaInput" class="captcha-input" /> 
+        <div *ngIf="captchaError" class="text-danger"> 
+          <small>INVALID CAPTCHA !, Please try again.</small> 
+        </div> 
+      </div> 
+ 
+      <button type="submit" class="login-btn">Log In</button> 
+    </form> 
+  </div> 
+</div> 
+ 
+<router-outlet></router-outlet>

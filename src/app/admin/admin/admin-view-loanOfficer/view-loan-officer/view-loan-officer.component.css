@@ -1,0 +1,77 @@
+.loan-officers-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.loan-officers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.loan-officer-card {
+  background-color: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 2px solid #ee9bef; /* Magenta border */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.loan-officer-card:hover {
+  transform: translateY(-4px);
+  border-color: #ed87ef; /* Darker magenta on hover */
+}
+
+.officer-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.officer-details p {
+  margin: 0.5rem 0;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+  gap: 10px;
+}
+
+.pagination-controls button {
+  padding: 0.5rem 1rem;
+}
+
+.card.shadow-sm {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.card-body input.form-control {
+  border: 2px solid #f7f2f4; /* Magenta input border */
+  border-radius: 4px;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card-body input.form-control:focus {
+  border-color: #f8f4f5; /* Darker magenta on focus */
+  box-shadow: 0 0 4px rgba(193, 24, 91, 0.5); /* Subtle magenta glow */
+}
+
+.card-body select.form-control {
+   /* Magenta dropdown border */
+  border-radius: 4px;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card-body select.form-control:focus {
+  border-color: white; /* Darker magenta on focus */
+  box-shadow: 0 0 4px rgba(193, 24, 91, 0.5); /* Subtle magenta glow */
+}

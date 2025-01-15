@@ -1,0 +1,101 @@
+/* Navbar Container */ 
+.navbar { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  background-color: #d98cdc; /* Pink Lavender */ 
+  padding: 15px 30px; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  border-radius: 8px; 
+} 
+ 
+/* Logo on the left */ 
+.navbar-logo { 
+  display: flex; 
+  align-items: center; 
+  gap: 10px; 
+} 
+ 
+.navbar-logo img { 
+  width: 50px; 
+  height: 50px; 
+  object-fit: cover; 
+} 
+ 
+.navbar-logo span { 
+  font-size: 24px; 
+  color: #ffffff; 
+  font-weight: bold; 
+  font-family: "Poppins", sans-serif; 
+} 
+ 
+/* Navbar Links on the right */ 
+.navbar-links { 
+  display: flex; 
+  align-items: center; 
+  list-style: none; 
+  margin: 0; 
+  padding: 0; 
+} 
+ 
+/* Navbar Links */ 
+.navbar-links li { 
+  margin-left: 20px; 
+} 
+ 
+.nav-link { 
+  font-size: 16px; 
+  color: #ffffff; 
+  text-decoration: none; 
+  font-family: "Poppins", sans-serif; 
+  transition: all 0.3s ease; 
+} 
+ 
+/* Hover Effects */ 
+.nav-link:hover { 
+  color: #ffc107; /* Bright Gold for hover */ 
+  text-decoration: underline; 
+} 
+ 
+/* Dropdown Menu */ 
+.dropdown-menu { 
+  background-color: #ffffff; /* White background */ 
+  border: none; 
+  border-radius: 8px; 
+} 
+ 
+.dropdown-item { 
+  font-size: 16px; 
+  color: #333333; /* Dark text for readability */ 
+  transition: background-color 0.3s ease, color 0.3s ease; 
+} 
+ 
+.dropdown-item:hover { 
+  background-color: #d98cdc; /* Matches navbar background */ 
+  color: #ffffff; /* White text */ 
+} 
+ 
+/* Responsive Design for Mobile */ 
+@media (max-width: 768px) { 
+  .navbar { 
+    flex-direction: column; 
+    text-align: center; 
+  } 
+ 
+  .navbar-logo { 
+    margin-bottom: 15px; 
+  } 
+ 
+  .navbar-links { 
+    flex-direction: column; 
+    gap: 10px; 
+  } 
+ 
+  .navbar-links li { 
+    margin: 0; 
+  } 
+ 
+  .nav-link { 
+    font-size: 18px; 
+  } 
+}

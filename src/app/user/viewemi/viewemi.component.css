@@ -1,0 +1,73 @@
+/* EMI Cards Container */
+.emi-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+/* Individual EMI Card */
+.emi-card {
+  background-color: #fff; /* White card background */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  width: 300px; /* Fixed card width */
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  color: #4a2b4a; /* Dark purple text */
+}
+
+/* Card Header */
+.emi-card-header {
+  background-color: #c06ac0; /* Pink-lavender header */
+  color: #fff; /* White text for contrast */
+  padding: 0.5rem;
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 1rem;
+}
+
+/* Card Body */
+.emi-card-body p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Card Footer */
+.emi-card-footer {
+  margin-top: 1rem;
+}
+
+/* Button Styling */
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn-success {
+  background-color: #28a745; /* Green for success */
+  color: #fff;
+}
+
+.btn-success:disabled {
+  background-color: #6c757d; /* Grey for disabled button */
+  cursor: not-allowed;
+}
+
+.btn-success:hover:enabled {
+  background-color: #218838; /* Darker green for hover */
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .emi-card {
+    width: 100%; /* Full width for smaller screens */
+  }
+}

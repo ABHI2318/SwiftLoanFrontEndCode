@@ -1,0 +1,108 @@
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Enquiries</h1>
+
+  <!-- Card Grid -->
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <div class="col" *ngFor="let enquiry of enquiries">
+      <div class="card h-100 border-{{ getStatusColor(enquiry.status) }}">
+        <div class="card-body">
+          <h5 class="card-title">Enquiry #{{ enquiry.enquiryId }}</h5>
+          <p class="card-text">
+            <strong>Question:</strong> {{ enquiry.question }}
+          </p>
+          <p class="card-text">
+            <strong>Status:</strong>
+            <span class="badge bg-{{ getStatusColor(enquiry.status) }}">
+              {{ enquiry.status }}
+            </span>
+          </p>
+          <p class="card-text">
+            <strong>Response:</strong> {{ enquiry.response || 'N/A' }}
+          </p>
+        </div>
+        <div class="card-footer bg-transparent border-top-0">
+          <button
+            class="btn btn-primary btn-sm"
+            (click)="openReplyModal(enquiry)"
+            [disabled]="enquiry.status === 'RESOLVED'"
+          >
+            Reply
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  <div class="d-flex justify-content-center mt-4">
+    <ul class="pagination">
+      <!-- Previous Button -->
+      <li class="page-item" [class.disabled]="pageNumber === 0">
+        <button class="page-link" (click)="onPageChange(pageNumber - 1)">Previous</button>
+      </li>
+
+      <!-- Page Numbers -->
+      <li
+        class="page-item"
+        *ngFor="let page of pages"
+        [class.active]="page === pageNumber"
+      >
+        <button class="page-link" (click)="onPageChange(page)">
+          {{ page + 1 }}
+        </button>
+      </li>
+
+      <!-- Next Button -->
+      <li class="page-item" [class.disabled]="isLastPage">
+        <button class="page-link" (click)="onPageChange(pageNumber + 1)">Next</button>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- Reply Enquiry Modal -->
+<div
+  class="modal fade show d-block"
+  tabindex="-1"
+  role="dialog"
+  *ngIf="isReplyModalOpen"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title">Reply to Enquiry #{{ selectedEnquiry }}</h5>
+        <button
+          type="button"
+          class="btn-close"
+          (click)="closeReplyModal()"
+          aria-label="Close"
+        ></button>
+      </div>
+      <!-- Modal Body -->
+      <div class="modal-body">
+        <form [formGroup]="replyForm" (ngSubmit)="onReplyEnquiry()">
+          <div class="mb-3">
+            <label for="response" class="form-label fw-bold">Response</label>
+            <textarea
+              id="response"
+              class="form-control"
+              placeholder="Enter your response"
+              formControlName="response"
+              rows="5"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary w-50 mx-auto d-block"
+            [disabled]="!replyForm.valid"
+          >
+            Submit Reply
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

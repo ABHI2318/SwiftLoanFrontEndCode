@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navbar</title>
+</head>
+
+<body>
+
+ <!--  <div class="dashboard-container">
+    <div class="navbar">
+      
+      <div class="navbar-logo">
+        <img src="assets/swift.jpeg" alt="Logo">
+        <span><strong>SwiftLoan Customer</strong></span>
+        <button class="toggle-btn" (click)="toggleSidebar()">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+     
+      <div class="navbar-menu">
+        <a routerLink="loanschemes">Available Loan Schemes</a>
+        <a routerLink="appliedloans">Applied Loans</a>
+        <a href="userdashboard/viewapprovedloans">Active Loans</a>
+        
+        <a routerLink="queries">Queries</a>
+        <a routerLink="updateprofile">Update Profile</a>
+       
+
+
+
+
+      </div>
+      <div class="right">
+        <div class="profile">
+         
+        </div>
+        <div class="logout">
+          <button (click)="logOut()">Logout</button>
+        </div>
+      </div>
+    </div>
+
+  </div> -->
+
+  <div class="admin-dashboard">
+    <!-- Welcome Section -->
+    <div class="welcome-section">
+      <h1 class="welcome-title">Welcome, User</h1>
+      <p class="welcome-subtitle">
+        View loan schemes, apply for loans, check applied and active loans, pay EMIs, and much more with ease.
+      </p>
+    </div>
+  
+    <!-- Overview Section -->
+    <div class="overview">
+      <h2 class="section-title">Dashboard Overview</h2>
+      <div class="statistics">
+        <div class="stat-box">
+          <h4>📄 View Loan Schemes</h4>
+          <p>View loan schemes, rate of interest and amount</p>
+        </div>
+        <div class="stat-box">
+          <h4>👩‍💼 Apply for loans</h4>
+          <p>Submit your documents and apply for loans</p>
+        </div>
+        <div class="stat-box">
+          <h4>💼 View Applied Loans</h4>
+          <p>View all your applied loans and their status</p>
+        </div>
+        <div class="stat-box">
+          <h4>👥 Check Your Active Loans</h4>
+          <p>View approved loans and pay monthly EMIs</p>
+        </div>
+        <div class="stat-box">
+          <h4>👥 Update Your Profile </h4>
+          <p>Update your details</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <router-outlet></router-outlet>
+
+</body>
+
+</html>

@@ -1,0 +1,199 @@
+/* .registration-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background: linear-gradient(to bottom right, pink, skyblue);
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    color: #120808;
+  }
+  
+ 
+  .registration-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #120909;
+  }
+  
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+ 
+  .form-label {
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    margin-bottom: 5px;
+    display: block;
+    color: #110909;
+  }
+  
+  
+  .form-control {
+    border-radius: 6px;
+    border: 1px solid #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #060303;
+    font-size: 15px;
+    padding: 10px 12px;
+    transition: all 0.3s ease;
+  }
+  
+
+  .form-control:focus {
+    border-color: #00c4ff;
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 5px rgba(0, 196, 255, 0.5);
+    outline: none;
+  }
+  
+  
+  .text-danger {
+    font-size: 12px;
+    color: #ff7675;
+  }
+  
+  
+  button {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #007bff;
+    background-color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+ 
+  button:hover {
+    background-color: #00c4ff;
+    color: #fff;
+  }
+  
+
+  button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  }
+  
+
+  @media (max-width: 768px) {
+    .registration-container {
+      padding: 20px;
+    }
+  
+    .registration-title {
+      font-size: 28px;
+    }
+  
+    button {
+      font-size: 14px;
+    }
+  } */
+   /* Registration Form Styles */
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  background: linear-gradient(to bottom right, #f3d4f6, #ffffff); /* Lighter gradient */
+  border-radius: 12px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+  color: #120808; /* Text color */
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 32px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #9b69b1; /* Lighter magenta shade for title */
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  margin-bottom: 5px;
+  display: block;
+  color: #9b69b1; /* Lighter magenta shade for labels */
+}
+
+input, select {
+  border-radius: 6px;
+  border: 1px solid #e1aad5; /* Light magenta border for form elements */
+  background-color: rgba(255, 255, 255, 0.8); /* Lighter transparent white */
+  color: #060303; /* Black text */
+  font-size: 15px;
+  padding: 10px 12px;
+  width: 100%; /* Full width for form elements */
+  transition: all 0.3s ease;
+}
+
+input:focus, select:focus {
+  border-color: #e1aad5; /* Light magenta border on focus */
+  background-color: rgba(255, 255, 255, 1); /* Solid white background on focus */
+  box-shadow: 0 0 5px rgba(225, 170, 213, 0.5); /* Light magenta shadow on focus */
+  outline: none;
+}
+
+small {
+  font-size: 12px;
+  color: #d98cdc; /* Lighter red error color */
+}
+
+button {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #ffffff;
+  background-color: #e1aad5; /* Light magenta button background */
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #d98cdc; /* Lighter magenta on hover */
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(225, 170, 213, 0.5); /* Light magenta glow when focused */
+}
+btn{
+  color: white;
+  background-color: #9b69b1;
+}
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 28px;
+  }
+
+  button {
+    font-size: 14px;
+  }
+}

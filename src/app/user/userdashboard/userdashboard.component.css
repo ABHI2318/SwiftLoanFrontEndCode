@@ -1,0 +1,236 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: Arial, sans-serif;
+  /* Light pink-lavender background */
+  background-color: white; 
+  color: #4a2b4a; /* Darker purple text for contrast */
+}
+
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* Pink-lavender navbar background */
+  background-color: #d98cdc;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  /* White text for contrast */
+  color: #fff; 
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+/* Navbar Menu */
+.navbar-menu {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar-menu a {
+  text-decoration: none;
+  /* White text for menu items */
+  color: #fff; 
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.navbar-menu a:hover {
+  /* Slightly darker shade of pink-lavender or a complementary accent */
+  color: #f0aaf0; 
+}
+
+/* Profile Menu */
+.profile {
+  margin-top: 10px;
+  position: relative;
+}
+
+.profile-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  width: 200px;
+  padding: 0.5rem 0;
+  z-index: 10;
+}
+
+.profile-dropdown a {
+  display: block;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: #4a2b4a;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  transition: background-color 0.3s ease;
+}
+
+.profile-dropdown a:hover {
+  background-color: #f7e6f7;
+}
+
+.profile:hover .profile-dropdown {
+  display: block;
+}
+
+/* Logout Button */
+.logout button {
+  /* Main pink-lavender accent */
+  background-color: #c06ac0; 
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem; 
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease;
+}
+
+.logout button:hover {
+  /* Slightly darker shade */
+  background-color: #a858a8; 
+}
+
+/* Navbar Right Section */
+.navbar .right {
+  display: flex;
+  flex-direction: row;
+  width: 12vw;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f5f7;
+}
+
+/* Admin Dashboard Styling */
+.admin-dashboard {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Welcome Section */
+.welcome-section {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.welcome-title {
+  font-size: 2rem;
+  color: #5a2a78;
+  margin-bottom: 10px;
+}
+
+.welcome-subtitle {
+  font-size: 1.2rem;
+  color: #666666;
+}
+
+/* Overview Section */
+.overview {
+  margin-bottom: 30px;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  color: #333333;
+  margin-bottom: 20px;
+}
+
+.statistics {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.stat-box {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  flex: 1 1 calc(25% - 20px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.stat-box h4 {
+  font-size: 1.2rem;
+  color: #5a2a78;
+  margin-bottom: 10px;
+}
+
+.stat-box p {
+  font-size: 1rem;
+  color: #666666;
+}
+
+/* Dynamic Sections */
+.section-content {
+  margin-bottom: 30px;
+}
+
+.hidden {
+  display: none;
+}
+
+.scheme-box, .officer-box, .request-box, .customer-box {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.scheme-details, .officer-details, .request-details, .customer-details {
+  font-size: 0.9rem;
+  color: #666666;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .navbar-menu {
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .navbar-menu a {
+    font-size: 1.1rem;
+  }
+
+  .profile-dropdown {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

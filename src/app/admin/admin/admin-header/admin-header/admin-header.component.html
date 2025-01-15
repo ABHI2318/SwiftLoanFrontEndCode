@@ -1,0 +1,57 @@
+<div class="admin-navbar">
+    <!-- Logo and Name -->
+    <div class="admin-navbar-logo">
+      <img src="assets/swift.jpeg" alt="SwiftLoan Logo" />
+      <span class="app-name">SwiftLoan Admin</span>
+    </div>
+  
+    <!-- Navigation Links -->
+    <ul class="admin-navbar-links">
+      <li>
+        <a routerLink="admindashboard" class="navbar-link">Dashboard</a>
+      </li>
+  
+      <!-- Loan Schemes Dropdown -->
+      <li class="dropdown">
+        <button class="dropdown-btn">Loan Schemes</button>
+        <div class="dropdown-content">
+          <a routerLink="addloanscheme" class="dropdown-link">Add Loan Scheme</a>
+          <a routerLink="viewloanscheme" class="dropdown-link">View Loan Schemes</a>
+        </div>
+      </li>
+  
+      <!-- Loan Officer Management Dropdown -->
+      <li class="dropdown">
+        <button class="dropdown-btn">Loan Officers</button>
+        <div class="dropdown-content">
+          <a routerLink="addloanofficer" class="dropdown-link">Add Loan Officer</a>
+          <a routerLink="manageloanofficer" class="dropdown-link">Manage Loan Officers</a>
+          <a routerLink="report" class="dropdown-link">View Reports</a>
+        </div>
+      </li>
+  
+      <!-- Loan Requests & NPA Dropdown -->
+      <li class="dropdown">
+        <button class="dropdown-btn">Loan Requests & NPA</button>
+        <div class="dropdown-content">
+          <a routerLink="viewloanRequest" class="dropdown-link">View Loan Requests</a>
+          <a routerLink="npa" class="dropdown-link">View NPA</a>
+        </div>
+      </li>
+  
+      <!-- Customers Dropdown -->
+      <li class="dropdown">
+        <button class="dropdown-btn">Customers</button>
+        <div class="dropdown-content">
+          <a routerLink="customers" class="dropdown-link">View Customers</a>
+        </div>
+      </li>
+  
+      <!-- Logout Button -->
+      <li>
+        <button class="btn btn logout-btn" (click)="signOut()">Logout</button>
+      </li>
+    </ul>
+  </div>
+  
+  <router-outlet></router-outlet>

@@ -1,0 +1,128 @@
+/* /* Container styling */
+/*.container.mt-5 {
+  max-width: 1200px;
+  margin: 2rem auto;
+  background-color: #f8f9fa; 
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+
+.loan-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
+
+.loan-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.loan-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.loan-header {
+  background-color: #bd7fdf; 
+  color: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 8px 8px 0 0;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+
+.loan-body p {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.loan-body strong {
+  color: #495057;
+}
+
+.document-link {
+  color: #007bff;
+  text-decoration: underline;
+  word-wrap: break-word;
+}
+
+.document-link:hover {
+  color: #0056b3;
+}
+
+
+.loan-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.loan-actions .btn {
+  flex: 1;
+  font-size: 0.9rem;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+
+.pagination {
+  margin-top: 1.5rem;
+}
+ */
+ .document-link {
+  display: inline-block;
+  max-width: 150px;  /* Set a max-width for the link */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: break-word;
+} /* Table Styles */
+table {
+  margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table thead th {
+  background-color: #d393d1;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+table tbody td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+table tbody tr:hover {
+  background-color: #e9ecef;
+}
+

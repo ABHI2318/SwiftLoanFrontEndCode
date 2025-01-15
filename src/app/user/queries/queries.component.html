@@ -1,0 +1,61 @@
+<div class="container mt-4">
+  <h2>Submit a Query</h2>
+
+  <!-- Query Form -->
+  <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()" class="mb-4">
+    <div class="mb-3">
+      <label for="question" class="form-label">Enter your Query here:</label>
+      <textarea
+        id="question"
+        formControlName="question"
+        rows="4"
+        class="form-control"
+      ></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="querytype" class="form-label">Query Type:</label>
+      <select id="querytype" formControlName="querytype" class="form-control">
+        <option value="Emi issues">Emi issues</option>
+        <option value="Loan status">Loan status</option>
+        <option value="Payment problems">Payment problems</option>
+        <option value="Others">Others</option>
+      </select>
+    </div>
+
+    <button type="submit" [disabled]="uploadForm.invalid" class="btn btn-primary">
+      Submit Query
+    </button>
+  </form>
+
+  <!-- Display Submitted Queries -->
+  <div *ngIf="queries.length > 0" class="queries-list">
+    <h3>Submitted Queries</h3>
+    <div *ngFor="let query of queries" class="query-card">
+      <div class="query-card-header">
+        <span class="query-id">Query #{{ query.id }}</span>
+        <span class="query-date">{{ query.date | date: 'short' }}</span>
+      </div>
+      <div class="query-card-body">
+        <p><strong>Query:</strong> {{ query.question }}</p>
+        <p>
+          <strong>Response:</strong>
+          {{ query.response ? query.response : 'No response yet.' }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pagination Controls -->
+  <div *ngIf="totalPages > 1" class="pagination-controls d-flex justify-content-between align-items-center mt-4">
+    <button (click)="previousPage()" [disabled]="currentPage === 1">
+      Previous
+    </button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+      Next
+    </button>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

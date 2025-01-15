@@ -1,0 +1,157 @@
+<div class="container mt-4">
+  <!-- Loan Schemes Section -->
+  <div class="loan-schemes-container mb-5">
+    <h2 class="text-center mb-4">Loan Schemes</h2>
+
+    <!-- Search Filter -->
+    <div class="d-flex justify-content-between mb-3">
+      <input 
+        type="text" 
+        class="form-control w-50" 
+        placeholder="Search by loan scheme name" 
+        [(ngModel)]="searchTerm">
+    </div>
+
+    <!-- Card Layout for Loan Schemes -->
+    <div *ngIf="filteredLoanSchemes.length > 0; else noSchemes">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+        <div class="col" *ngFor="let scheme of filteredLoanSchemes">
+          <div class="card h-100 border-custom">
+            <div class="card-body">
+              <h5 class="card-title text-primary">
+                {{ scheme.schemename }}
+              </h5>
+              <p class="card-text mb-2">
+                <strong>Min Amount:</strong> {{ scheme.minamount | currency:'INR':'symbol' }}
+                <br>
+                <strong>Max Amount:</strong> {{ scheme.maxamount | currency:'INR':'symbol' }}
+                <br>
+                <strong>Interest Rate:</strong>
+                <span class="badge bg-secondary">
+                  {{ scheme.interest }}%
+                </span>
+              </p>
+              <button
+  class="btn btn-primary btn-sm"
+  [routerLink]="['/user/loanschemes/applyloan']"
+  data-bs-toggle="modal" data-bs-target="#exampleModal"
+  [queryParams]="{ schemeId: scheme.schemeId }"
+  routerLinkActive="active"
+>
+  Apply
+</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination Controls -->
+      <div class="pagination-controls d-flex justify-content-between align-items-center mt-3">
+        <button 
+          class="btn btn-outline-secondary" 
+          (click)="previousPage()" 
+          [disabled]="currentPage === 1"
+        >
+          Previous
+        </button>
+        <span>Page {{ currentPage }} of {{ totalPages }}</span>
+        <button 
+          class="btn btn-outline-secondary" 
+          (click)="nextPage()" 
+          [disabled]="currentPage === totalPages"
+        >
+          Next
+        </button>
+      </div>
+
+      <!-- Page Size Control -->
+      <div class="page-size-container mt-3">
+        <label for="pageSize">Items per page:</label>
+        <input 
+          id="pageSize" 
+          type="number" 
+          class="form-control w-auto d-inline-block" 
+          [(ngModel)]="pageSize" 
+          (change)="loadLoanSchemes(currentPage)" 
+          [min]="1" 
+          [max]="totalElements"
+        />
+      </div>
+
+      <!-- Page Info -->
+      <div class="page-info mt-3">
+        <p>
+          Showing 
+          {{ (currentPage - 1) * pageSize + 1 }} - 
+          {{ (currentPage * pageSize) > totalElements ? totalElements : (currentPage * pageSize) }} 
+          of {{ totalElements }} items
+        </p>
+      </div>
+    </div>
+
+    <!-- No Schemes Found -->
+    <ng-template #noSchemes>
+      <div class="alert alert-warning text-center">
+        No loan schemes found.
+      </div>
+    </ng-template>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content custom-modal-content">
+        <div class="modal-header custom-modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Apply Loan</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body custom-modal-body">
+          <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()" class="glass-effect">
+            <h2 class="text-center mb-4 text-primary"></h2>
+  
+            <!-- File Upload Fields -->
+            <!-- File Upload Fields -->
+<div class="mb-3">
+  <label for="adharFile" class="form-label">Upload Aadhaar:</label>
+  <input type="file" id="adharFile" (change)="onAdharFileSelect($event)" class="form-control magenta-input" />
+</div>
+<div class="mb-3">
+  <label for="panFile" class="form-label">Upload Pan Card:</label>
+  <input type="file" id="panFile" (change)="onPanFileSelect($event)" class="form-control magenta-input" />
+</div>
+<div class="mb-3">
+  <label for="bankFile" class="form-label">Upload Bank Statement:</label>
+  <input type="file" id="bankFile" (change)="onBankFileSelect($event)" class="form-control magenta-input" />
+</div>
+
+<!-- Input Fields -->
+<div class="mb-3">
+  <label for="loanAmount" class="form-label">Loan Amount:</label>
+  <input id="loanAmount" formControlName="loanAmount" type="number" class="form-control magenta-input" />
+</div>
+<div class="mb-3">
+  <label for="time" class="form-label">Time (in years):</label>
+  <input id="time" formControlName="time" type="number" class="form-control magenta-input" />
+</div>
+<!-- <button type="submit" (click)="onSubmit()" class="btn btn-primary">Submit</button> -->
+
+  
+            <!-- Submit Button -->
+            <div class="d-flex justify-content-end">
+              <button
+                type="submit"
+                class="btn btn-magenta"
+                [disabled]="uploadForm.invalid || !adharFile || !panFile || !bankFile"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

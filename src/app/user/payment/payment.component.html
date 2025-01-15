@@ -1,0 +1,48 @@
+
+
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Pay Your EMI</h2>
+<!--   
+  <div class="form-group">
+    <label for="amount">Enter Amount:</label>
+    <input type="number" id="amount" [(ngModel)]="amount" class="form-control" placeholder="Amount in cents" />
+  </div> -->
+
+  <div id="card-element" class="mb-3">
+    <!-- This will hold the Stripe/Card input elements (styled by Stripe API) -->
+  </div>
+
+  <div id="card-errors" role="alert" class="text-danger"></div>
+
+  <button class="btn btn-primary btn-block" (click)="handlePayment()">Pay Now {{amount}}</button>
+</div>
+
+
+<!-- 
+<div class="paymentContainer">
+  <form class="paymentForm" (submit)="submitHandler($event)">
+    <p>Card Info</p>
+    <div>
+      <h3><i class='bx bx-credit-card'></i></h3>
+      <div id="card-number-element" class="paymentInput"></div>
+    </div>
+    <div>
+      <h3>Expiry Date</h3>
+      <div id="card-expiry-element" class="paymentInput"></div>
+    </div>
+    <div>
+     <h3>CVV</h3>
+      <div id="card-cvc-element" class="paymentInput"></div>
+    </div>
+    <label for="amount">Enter Amount: </label>
+    <input type="number" id="amount" [(ngModel)]="amount" placeholder="Amount in cents" />
+
+    <div id="card-element">
+
+    </div>
+    <button (click)="handlePayment()">Pay Now</button>
+  
+
+  </form>
+</div> -->

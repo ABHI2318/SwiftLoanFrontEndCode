@@ -1,0 +1,91 @@
+<div class="container">
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="login-form">
+    <h2>Update Profile</h2>
+
+    <!-- Username -->
+    <div class="form-group">
+      <label for="username" class="form-label">Username</label>
+      <input id="email" formControlName="email" type="email" />
+      <div *ngIf="userForm.get('username')?.invalid && userForm.get('username')?.touched">
+        <small *ngIf="userForm.get('username')?.hasError('required')">Username is required. </small>
+        <small *ngIf="userForm.get('username')?.hasError('email')">Enter a valid email.</small>
+      </div>
+    </div>
+
+    <!-- Password -->
+    <div class="form-group">
+      <label for="password" class="form-label">Password</label>
+      <input id="password" formControlName="password" type="password" />
+      <div *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched">
+        <small *ngIf="userForm.get('password')?.hasError('required')">Password is required.</small>
+        <small *ngIf="userForm.get('password')?.hasError('pattern')">
+          Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.
+        </small>
+      </div>
+    </div>
+
+    <!-- First Name -->
+    <div class="form-group">
+      <label for="firstName" class="form-label">First Name</label>
+      <input id="firstName" formControlName="firstName" type="text" />
+      <div *ngIf="userForm.get('firstName')?.invalid && userForm.get('firstName')?.touched">
+        <small *ngIf="userForm.get('firstName')?.hasError('required')">First Name is required.</small>
+        <small *ngIf="userForm.get('firstName')?.hasError('pattern')">Enter a valid first name.</small>
+      </div>
+    </div>
+
+    <!-- Last Name -->
+    <div class="form-group">
+      <label for="lastName" class="form-label">Last Name</label>
+      <input id="lastName" formControlName="lastName" type="text" />
+      <div *ngIf="userForm.get('lastName')?.invalid && userForm.get('lastName')?.touched">
+        <small *ngIf="userForm.get('lastName')?.hasError('required')">Last Name is required.</small>
+        <small *ngIf="userForm.get('lastName')?.hasError('pattern')">Enter a valid last name.</small>
+      </div>
+    </div>
+
+    <!-- PAN Card -->
+    <div class="form-group">
+      <label for="pancardNumber" class="form-label">PAN Card</label>
+      <input id="pancardNumber" formControlName="pancardNumber" type="text" />
+      <div *ngIf="userForm.get('pancardNumber')?.invalid && userForm.get('pancardNumber')?.touched">
+        <small *ngIf="userForm.get('pancardNumber')?.hasError('required')">PAN Card is required.</small>
+        <small *ngIf="userForm.get('pancardNumber')?.hasError('pattern')">Enter a valid PAN Card.</small>
+      </div>
+    </div>
+
+    <!-- Date of Birth -->
+    <div class="form-group">
+      <label for="dob" class="form-label">Date of Birth</label>
+      <input id="dob" formControlName="dob" type="date" />
+      <div *ngIf="userForm.get('dob')?.invalid && userForm.get('dob')?.touched">
+        <small *ngIf="userForm.get('dob')?.hasError('required')">Date of Birth is required.</small>
+      </div>
+    </div>
+
+    <!-- Contact Number -->
+    <div class="form-group">
+      <label for="contactNumber" class="form-label">Contact Number</label>
+      <input id="contactNumber" formControlName="contactNumber" type="text" />
+      <div *ngIf="userForm.get('contactNumber')?.invalid && userForm.get('contactNumber')?.touched">
+        <small *ngIf="userForm.get('contactNumber')?.hasError('required')">Contact Number is required.</small>
+        <small *ngIf="userForm.get('contactNumber')?.hasError('pattern')">Enter a valid contact number.</small>
+      </div>
+    </div>
+
+    <!-- Gender -->
+    <div class="form-group">
+      <label for="gender" class="form-label">Gender</label>
+      <select id="gender" formControlName="gender">
+        <option value="">Select Gender</option>
+        <option value="MALE">Male</option>
+        <option value="FEMALE">Female</option>
+      </select>
+      <div *ngIf="userForm.get('gender')?.invalid && userForm.get('gender')?.touched">
+        <small *ngIf="userForm.get('gender')?.hasError('required')">Gender is required.</small>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-button">Submit</button>
+  </form>
+</div>

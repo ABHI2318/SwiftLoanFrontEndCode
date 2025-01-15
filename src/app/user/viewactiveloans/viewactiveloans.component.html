@@ -1,0 +1,163 @@
+<!-- <div class="container">
+    <h2>Active Loans</h2>
+  
+
+    <div *ngIf="isLoading" class="loading">
+      Loading approved loans...
+    </div>
+  
+ 
+    <div *ngIf="errorMessage" class="error">
+      {{ errorMessage }}
+    </div>
+  
+
+    <table *ngIf="!isLoading && !errorMessage && dataSource.length > 0" class="loan-table">
+      <thead>
+        <tr>
+          
+          <th>Loan Amount</th>
+          <th>Time (Years)</th>
+          <th>Status</th>
+          <th>Closed</th>
+          <th>Simple Interest</th>
+          <th>Monthly Repayment</th>
+          <th>View Emi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let loan of dataSource">
+         
+          <td>{{ loan.loanamount | currency }}</td>
+          <td>{{ loan.time }}</td>
+          <td>{{ loan.loanstatus }}</td>
+          <td>{{ loan.closed ? 'Yes' : 'No' }}</td>
+          <td>{{ loan.simpleInterest }}%</td>
+          <td>{{ loan.monthlyRepayment | currency }}</td>
+          <td>
+            <button 
+            class="btn btn-primary btn-sm" 
+            [routerLink]="['/userdashboard/viewEmi']" 
+            [queryParams]="{ loanId: loan.loanid }" 
+            routerLinkActive="active">
+            View EMI
+          </button>
+           
+          </td>
+  
+        </tr>
+      </tbody>
+    </table>
+  
+   
+    <div *ngIf="!isLoading && !errorMessage && dataSource.length === 0" class="no-data">
+      No approved loans found.
+    </div>
+  
+
+    <div class="pagination-controls d-flex justify-content-between align-items-center mt-3">
+      <button class="btn btn-outline-secondary" (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+      <span>Page {{ currentPage }} of {{ totalPages() }}</span>
+      <button class="btn btn-outline-secondary" (click)="nextPage()" [disabled]="currentPage === totalPages()">Next</button>
+    </div>
+  
+    <div class="page-size-container mt-3">
+      <label for="pageSize">Items per page:</label>
+      <input 
+        id="pageSize" 
+        type="number" 
+        class="form-control w-auto d-inline-block" 
+        [(ngModel)]="pageSize" 
+        (change)="onPageSizeChange(pageSize)" 
+        [min]="1" 
+        [max]="totalElements"
+      />
+    </div>
+  
+
+    <div class="page-info mt-3">
+      <p>Showing {{ (currentPage - 1) * pageSize + 1 }} - 
+        {{ (currentPage * pageSize) > totalElements ? totalElements : (currentPage * pageSize) }} of {{ totalElements }} items</p>
+    </div>
+  </div>
+  
+
+  <ng-template #noSchemes>
+    <div class="alert alert-warning text-center">
+      No loan schemes found.
+    </div>
+  </ng-template>
+  
+  <router-outlet></router-outlet> -->
+
+  <div class="container">
+    <h2>Active Loans</h2>
+  
+    <!-- Loading Indicator -->
+    <div *ngIf="isLoading" class="loading">
+      Loading approved loans...
+    </div>
+  
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="error">
+      {{ errorMessage }}
+    </div>
+  
+    <!-- Loan Cards -->
+    <div *ngIf="!isLoading && !errorMessage && dataSource.length > 0" class="card-container">
+      <div *ngFor="let loan of dataSource" class="loan-card">
+        <div class="loan-card-header">
+          <h5 class="loan-title">{{ loan.loanscheme }}</h5>
+          <span class="loan-status" [ngClass]="{'approved': loan.loanstatus === 'Approved', 'unapproved': loan.loanstatus === 'Unapproved'}">
+            {{ loan.loanstatus }}
+          </span>
+        </div>
+        <div class="loan-card-body">
+          <div class="loan-details">
+            <p><strong>Loan Amount:</strong> {{ loan.loanamount | currency:'INR':'symbol'}}</p>
+            <p><strong>Time (Years):</strong> {{ loan.time }}</p>
+        
+            <p><strong>Monthly Repayment:</strong> {{ loan.monthlyRepayment | currency:'INR':'symbol' }}</p>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-sm" [routerLink]="['/user/viewemi']" [queryParams]="{ loanId: loan.loanid }">
+          View EMI
+        </button>
+      </div>
+    </div>
+  
+    <!-- No Data Message -->
+    <div *ngIf="!isLoading && !errorMessage && dataSource.length === 0" class="no-data">
+      No approved loans found.
+    </div>
+  
+    <!-- Pagination Controls -->
+    <div class="pagination-controls">
+      <button class="btn btn-outline-secondary" (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+      <span>Page {{ currentPage }} of {{ totalPages() }}</span>
+      <button class="btn btn-outline-secondary" (click)="nextPage()" [disabled]="currentPage === totalPages()">Next</button>
+    </div>
+  
+    <!-- Page Size Control -->
+    <div class="page-size-container">
+      <label for="pageSize">Items per page:</label>
+      <input 
+        id="pageSize" 
+        type="number" 
+        class="form-control w-auto" 
+        [(ngModel)]="pageSize" 
+        (change)="onPageSizeChange(pageSize)" 
+        [min]="1" 
+        [max]="totalElements"
+      />
+    </div>
+  
+    <!-- Page Info -->
+    <div class="page-info">
+      <p>Showing {{ (currentPage - 1) * pageSize + 1 }} - 
+        {{ (currentPage * pageSize) > totalElements ? totalElements : (currentPage * pageSize) }} of {{ totalElements }} items
+      </p>
+    </div>
+  </div>
+
+<router-outlet></router-outlet>

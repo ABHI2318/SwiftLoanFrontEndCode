@@ -1,0 +1,69 @@
+.loan-schemes-container {
+  max-width: 1200px;
+  margin:  auto;
+  margin-top: 90px;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.loan-schemes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.loan-scheme-card {
+  background-color: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 2px solid #ee9bef; /* Magenta border */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.loan-scheme-card:hover {
+  transform: translateY(-4px);
+  border-color: #af4cbf; /* Darker magenta on hover */
+}
+
+.scheme-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.scheme-details p {
+  margin: 0.5rem 0;
+}
+
+.scheme-actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.page-size-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+  gap: 10px;
+}
+
+.pagination-controls button {
+  padding: 0.5rem 1rem;
+}
+
+.alert {
+  background-color: #fffae6;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}

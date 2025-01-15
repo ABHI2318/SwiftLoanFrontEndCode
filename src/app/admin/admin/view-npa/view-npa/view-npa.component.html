@@ -1,0 +1,60 @@
+<div class="npa-container">
+  <h3>List of NPA Users</h3>
+
+  <div *ngIf="npaUsers && npaUsers.length > 0">
+    <table class="npa-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>User</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let npa of npaUsers">
+          <td>{{ npa.userId }}</td>
+          <td>{{ npa.firstName }} {{ npa.lastName }}</td>
+          <td>
+            <button (click)="viewMissedPayments(npa.userId)">View Missed Payments</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="pagination">
+      <button (click)="loadPage(pageNumber - 1)" [disabled]="isPrevDisabled()">Previous</button>
+      <button (click)="loadPage(pageNumber + 1)" [disabled]="isNextDisabled()">Next</button>
+    </div>
+  </div>
+
+  <div *ngIf="npaUsers.length === 0">
+    <p>No NPA records found.</p>
+  </div>
+
+  <!-- Modal for Missed Payments -->
+  <div *ngIf="showModal" class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">×</span>
+      <h2>Missed Payments</h2>
+      <table *ngIf="missedPayments.length > 0">
+        <thead>
+          <tr>
+            <th>EMI Amount</th>
+            <th>Due Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let payment of missedPayments">
+            <td>{{ payment.emiAmount }}</td>
+            <td>{{ payment.dueDate | date }}</td>
+            <td>{{ payment.isPaid ? 'Paid' : 'Not Paid' }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="missedPayments.length === 0">
+        <p>No missed payments found for this user.</p>
+      </div>
+    </div>
+  </div>
+</div>

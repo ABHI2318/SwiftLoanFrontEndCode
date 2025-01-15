@@ -1,0 +1,56 @@
+<div class="loan-officers-container mt-4">
+  <h2 class="text-center mb-4">View Loan Officers</h2>
+
+  <!-- Search Filter Card -->
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <input type="text" class="form-control" [(ngModel)]="searchText" placeholder="Search by Name or Email">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loan Officers Cards -->
+  <div class="loan-officers-grid">
+    <div *ngFor="let officer of loanOfficers | filter:searchText" class="loan-officer-card">
+      <h3 class="officer-name">{{ officer.firstName }} {{ officer.lastName }}</h3>
+      <div class="officer-details">
+        <p><strong>Email:</strong> {{ officer.email }}</p>
+        <p><strong>PAN Card:</strong> {{ officer.pancardNumber }}</p>
+        <p><strong>Date of Birth:</strong> {{ officer.dob }}</p>
+        <p><strong>Contact:</strong> {{ officer.contactNumber }}</p>
+        <p><strong>Gender:</strong> {{ officer.gender }}</p>
+      </div>
+
+      <button 
+        class="btn btn-outline-danger" 
+        (click)="toggleDeleteLoanScheme(officer.officerId)"
+      >
+        {{ officer.isdeleted ? 'Activate' : 'Deactivate' }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Page Size Dropdown (Aligned to the left) -->
+  <div class="row mb-2">
+    <div class="col-md-2">
+      <div class="card shadow-sm">
+        <div class="card-body p-2">
+          <label for="pageSize" class="mr-2">Page Size: </label>
+          <select id="pageSize" class="form-control form-control-sm" [(ngModel)]="pageSize" (change)="changePageSize()" style="width: 120px;">
+            <option *ngFor="let size of pageSizes" [value]="size">{{ size }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pagination Controls -->
+  <div *ngIf="totalPages > 1" class="pagination-controls">
+    <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage <= 1" class="btn btn-primary">Previous</button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage >= totalPages" class="btn btn-primary">Next</button>
+  </div>
+</div>

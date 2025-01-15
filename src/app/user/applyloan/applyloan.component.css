@@ -1,0 +1,51 @@
+.loan-application-container {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .loan-application-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+  
+  .form-control:focus {
+    border-color: #007BFF;
+  }
+  
+  .btn-primary {
+    background-color: #007BFF;
+    border-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+  }
+  
+  .btn-primary:disabled {
+    background-color: #d6d6d6;
+    cursor: not-allowed;
+  }
+  

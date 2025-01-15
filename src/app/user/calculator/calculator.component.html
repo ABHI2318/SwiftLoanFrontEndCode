@@ -1,0 +1,57 @@
+<div class="container-fluid animated" style="font-family: Josefin Sans;">
+ <div class="text-center animated">
+   <h3 class="m-3">Online EMI Calculator Tool</h3>
+ </div>
+ <hr>
+
+ <!-- Flexbox Row to align cards side by side -->
+ <div class="row pb-4">
+   <!-- First Card (Loan Form) -->
+   <div class="col-lg-4 offset-lg-2 col-md-12 col-sm-12 col-12 text-center p-4">
+     <div class="card work mx-auto">
+       <div class="card-body">
+         <p>Select Loan Scheme</p>
+         <select [(ngModel)]="selectedLoanScheme" (change)="onLoanSchemeChange()" class="form-control">
+           <option *ngFor="let scheme of loanSchemes" [ngValue]="scheme">{{ scheme.schemename }}</option>
+         </select>
+
+         <p>Enter Amount</p>
+         <input type="number" placeholder="Enter Loan Amount" [(ngModel)]="loanAmt" class="form-control">
+      
+         <p>Interest Rate</p>
+         <input type="number" placeholder="Interest Rate" [(ngModel)]="interestRate" class="form-control" disabled>
+      
+         <p>Enter Duration (Years)</p>
+         <input type="number" placeholder="Enter Loan Duration" [(ngModel)]="loanDuration" class="form-control">
+
+         <button class="btn btn-success" (click)="calculateLoan()">Calculate</button>
+       </div>
+     </div>
+   </div>
+
+   <!-- Second Card (EMI Results) -->
+   <div class="col-lg-4 col-md-12 col-sm-12 col-12 text-center p-4">
+     <div class="card work mx-auto">
+       <div class="card-body">
+         <div>
+           <h4>Monthly EMI</h4>
+           <b>{{ this.emi | currency: 'INR' }}</b>
+           <br>
+         </div>
+         <br>
+         <div>
+           <h4>Principal Amount</h4>
+           <b>{{ loanAmt | currency: 'INR' }}</b>
+           <br>
+         </div>
+         <br>
+         <div>
+           <h4>Total Payable Amount</h4>
+           <b>{{ (this.emi * loanDuration * 12) | currency: 'INR' }}</b>
+           <br>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+</div>

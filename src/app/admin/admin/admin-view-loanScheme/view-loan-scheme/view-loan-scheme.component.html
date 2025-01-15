@@ -1,0 +1,135 @@
+<!-- <div class="loan-schemes-container">
+  <h2 class="text-center">LOAN SCHEMES</h2>
+
+
+  <div class="d-flex justify-content-between mb-3">
+    <input 
+      type="text" 
+      class="form-control w-50" 
+      placeholder="Search by loan scheme name" 
+      [(ngModel)]="searchTerm">
+  </div>
+
+
+  <div class="loan-schemes-grid">
+    <div 
+      *ngFor="let scheme of loanSchemes | filter: searchTerm" 
+      class="loan-scheme-card"
+    >
+      <h3 class="scheme-title">{{ scheme.schemename }}</h3>
+      <div class="scheme-details">
+        <p><strong>Min Amount:</strong> {{ scheme.minamount | currency }}</p>
+        <p><strong>Max Amount:</strong> {{ scheme.maxamount | currency }}</p>
+        <p><strong>Interest Rate:</strong> {{ scheme.interest }}%</p>
+      </div>
+      <div class="scheme-actions">
+        <button 
+          class="btn btn-outline-warning" 
+          (click)="editLoanScheme(scheme.schemeId)"
+        >
+          Update
+        </button>
+        <button 
+          class="btn btn-outline-danger" 
+          (click)="toggleDeleteLoanScheme(scheme.schemeId)"
+        >
+          {{ scheme.isdelete ? 'Activate' : 'Deactivate' }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+ 
+  <div class="pagination-controls d-flex justify-content-between align-items-center mt-3">
+    <button class="btn btn-outline-secondary" (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button class="btn btn-outline-secondary" (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+  </div>
+
+
+  <div *ngIf="loanSchemes.length === 0" class="alert alert-warning text-center mt-3">
+    No loan schemes found.
+  </div>
+</div> -->
+
+<div class="loan-schemes-container">
+  <h2 class="text-center">LOAN SCHEMES</h2>
+
+  <!-- Search Filter -->
+  <div class="d-flex justify-content-between mb-3">
+    <input
+      type="text"
+      class="form-control w-50"
+      placeholder="Search by loan scheme name"
+      [(ngModel)]="searchTerm"
+    />
+    <div class="page-size-container">
+      <label for="pageSize" class="form-label me-2">Page Size:</label>
+      <select
+        id="pageSize"
+        class="form-select w-auto"
+        [(ngModel)]="pageSize"
+        (change)="updatePageSize()"
+      >
+        <option *ngFor="let size of pageSizeOptions" [value]="size">{{ size }}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Loan Schemes Cards -->
+  <div class="loan-schemes-grid">
+    <div
+      *ngFor="let scheme of loanSchemes | filter: searchTerm | paginate: { itemsPerPage: pageSize, currentPage: currentPage }"
+      class="loan-scheme-card"
+    >
+      <h3 class="scheme-title">{{ scheme.schemename }}</h3>
+      <div class="scheme-details">
+        <p><strong>Min Amount:</strong> {{ scheme.minamount | currency:'INR':'symbol'  }}</p>
+        <p><strong>Max Amount:</strong> {{ scheme.maxamount | currency:'INR':'symbol' }}</p>
+        <p><strong>Interest Rate:</strong> {{ scheme.interest }}%</p>
+      </div>
+      <div class="scheme-actions">
+        <button
+          class="btn btn-outline-warning"
+          (click)="editLoanScheme(scheme.schemeId)"
+        >
+          Update
+        </button>
+        <button
+          class="btn btn-outline-danger"
+          (click)="toggleDeleteLoanScheme(scheme.schemeId)"
+        >
+          {{ scheme.isdelete ? 'Activate' : 'Deactivate' }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pagination Controls -->
+  <div class="pagination-controls d-flex justify-content-between align-items-center mt-3">
+    <button
+      class="btn btn-outline-secondary"
+      (click)="previousPage()"
+      [disabled]="currentPage === 1"
+    >
+      Previous
+    </button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button
+      class="btn btn-outline-secondary"
+      (click)="nextPage()"
+      [disabled]="currentPage === totalPages"
+    >
+      Next
+    </button>
+  </div>
+
+  <!-- No Schemes Found -->
+  <div
+    *ngIf="loanSchemes.length === 0"
+    class="alert alert-warning text-center mt-3"
+  >
+    No loan schemes found.
+  </div>
+</div>
+

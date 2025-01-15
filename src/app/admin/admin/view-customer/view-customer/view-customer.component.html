@@ -1,0 +1,51 @@
+<div class="container">
+  <br>
+  <h2 class="text-center">CUSTOMERS</h2>
+
+  <!-- Search Input -->
+  <div class="mb-3">
+    <input 
+      type="text" 
+      class="form-control" 
+      [(ngModel)]="searchText" 
+      (input)="loadCustomers(1)" 
+      placeholder="Search by any field" 
+    />
+  </div>
+
+  <!-- Customer Cards -->
+  <div class="loan-officers-grid">
+    <div *ngFor="let customer of (customers | filter: searchText)" class="loan-officer-card">
+      <h3 class="officer-name">{{ customer.firstName }} {{ customer.lastName }}</h3>
+      <div class="officer-details">
+        <p><strong>Email:</strong> {{ customer.email }}</p>
+        <p><strong>Phone Number:</strong> {{ customer.contactNumber }}</p>
+        <p><strong>Gender:</strong> {{ customer.gender }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- No Data Message -->
+  <div *ngIf="customers.length === 0" class="text-center">
+    <p>No customers found.</p>
+  </div>
+
+  <!-- Pagination Controls -->
+  <div class="pagination-controls text-center">
+    <!-- Previous Button -->
+    <button 
+      class="btn btn-secondary" 
+      (click)="goToPreviousPage()" 
+      [disabled]="currentPage === 1">
+      Previous
+    </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <!-- Next Button -->
+    <button 
+      class="btn btn-secondary" 
+      (click)="goToNextPage()" 
+      [disabled]="currentPage === totalPages">
+      Next
+    </button>
+  </div>
+</div>

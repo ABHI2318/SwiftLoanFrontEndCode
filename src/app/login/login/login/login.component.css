@@ -1,0 +1,163 @@
+/* General Container for the entire layout */
+.login-container {
+  display: flex;
+  justify-content: center; /* Center both the login and info box horizontally */
+  align-items: center; /* Center both boxes vertically */
+  min-height: 80vh; /* Ensure container takes full screen height */
+  background-color: #f7f7f7; /* Neutral background for better readability */
+  padding: 20px;
+}
+
+/* Info Box - Left Side */
+.info-box {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  width: 40%; /* Make sure it takes 40% of the container width */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-right: 20px; /* Add some space between the boxes */
+}
+
+.info-box h2 {
+  color: #5a2a78;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+.info-box ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 10px;
+}
+
+.info-box li {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.info-box li strong {
+  color: #5a2a78;
+}
+
+.info-box h3 {
+  margin-top: 20px;
+  color: #5a2a78;
+  font-weight: 500;
+}
+
+.info-box p {
+  font-size: 1rem;
+  color: #333;
+  margin-top: 10px;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* Login Box - Right Side */
+.login-box {
+  background-color: #ffffff;
+  border-radius: 8px;
+  width: 35%; /* Adjust as needed */
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-left: 20px; /* Add some space between the boxes */
+}
+
+.login-box h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #5a2a78;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+}
+
+/* Input Fields */
+.input-container {
+  margin-bottom: 20px;
+}
+
+.input-field, .captcha-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+/* Focused state */
+.input-field:focus, .captcha-input:focus {
+  border-color: #5a2a78;
+}
+
+/* CAPTCHA Styling */
+.captcha-container {
+  margin-bottom: 20px;
+}
+
+.captcha-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.captcha-text {
+  color: black;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.refresh-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #5a2a78;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.refresh-btn:hover {
+  color: #9b478f;
+}
+
+.text-danger {
+  color: #e74c3c;
+  font-size: 0.9rem;
+}
+
+/* Login Button */
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  background-color: #5a2a78;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: #9b478f;
+}
+
+/* Responsive Design for smaller screens */
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column; /* Stack the boxes vertically on small screens */
+    align-items: center;
+  }
+
+  .info-box, .login-box {
+    width: 90%; /* Make boxes take up 90% of the screen */
+    margin-bottom: 20px; /* Add some space below the boxes */
+  }
+}

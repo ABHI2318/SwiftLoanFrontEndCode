@@ -1,0 +1,129 @@
+.container {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Styling */
+.table {
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.table thead th {
+  background-color: #d393d1;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
+
+.table tbody td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.table tbody tr:hover {
+  background-color: #e9ecef;
+}
+
+/* Modal Styling */
+.custom-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.custom-modal-content {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  width: 70%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h5 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.page-item.active .page-link {
+  background-color: #d393d1;
+  border-color: #d393d1;
+}
+
+.page-link {
+  color: #d393d1;
+  font-weight: bold;
+}
+
+.page-link:hover {
+  color: #563d7c;
+}
+
+.btn{
+  background-color: #d393d1;
+  color: black;
+  border-color: #d393d1;
+}
+  
+.btn-spacing {
+  margin-right: 8px; /* Adjust spacing as needed */
+}
+
+/* Button spacing */
+
+
+/* Hover effects */
+.btn-approved:hover {
+  background-color: #28a745; /* Green */
+  border-color: #28a745;
+  color: white;
+}
+
+.btn-rejected:hover {
+  background-color: #dc3545; /* Red */
+  border-color: #dc3545;
+  color: white;
+}
+
+.btn-pending:hover {
+  background-color: #ffc107; /* Yellow */
+  border-color: #ffc107;
+  color: black;
+}

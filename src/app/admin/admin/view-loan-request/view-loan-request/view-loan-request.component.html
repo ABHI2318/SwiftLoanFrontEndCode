@@ -1,0 +1,31 @@
+<br>
+
+<h2 class="text-center">LOAN REQUEST LIST</h2>
+<div class="container mt-4 loan-officers-container">
+  
+  <!-- Filter Input -->
+  <div class="mb-3">
+    <input type="text" class="form-control" [(ngModel)]="filterText" placeholder="Filter requests..." (input)="applyFilter()" />
+  </div>
+
+  <!-- Loan Request Cards -->
+  <div class="loan-officers-grid">
+    <div *ngFor="let loanRequest of loanRequests | filter: filterText" class="loan-officer-card">
+      <h3 class="officer-name">{{ loanRequest.schemeName }}</h3>
+      <div class="officer-details">
+        <p><strong>Loan Amount:</strong> {{ loanRequest.loanamount }}</p>
+        <p><strong>Duration:</strong> {{ loanRequest.time }} Years</p>
+        <p><strong>User:</strong> {{ loanRequest.userFirstName }} {{ loanRequest.userLastName }}</p>
+        <p><strong>Loan Officer:</strong> {{ loanRequest.loanOfficerFirstName }} {{ loanRequest.loanOfficerLastName }}</p>
+        <p><strong>Status:</strong> {{ loanRequest.isClosed ? 'Closed' : 'Not Closed' }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pagination Controls -->
+  <div class="pagination-controls">
+    <button class="btn btn-" (click)="onPageChange(currentPage - 1)" [disabled]="currentPage === 0">Previous</button>
+    <span>Page {{ currentPage + 1 }} of {{ pageResponse.totalPages }}</span>
+    <button class="btn btn-primary" (click)="onPageChange(currentPage + 1)" [disabled]="pageResponse.lastPage">Next</button>
+  </div>
+</div>

@@ -1,0 +1,414 @@
+package com.aurionpro.loan.service;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Random;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.aurionpro.loan.dto.EmiRequestDto;
+import com.aurionpro.loan.dto.EmiResponseDto;
+import com.aurionpro.loan.dto.EnquiryRequestDto;
+import com.aurionpro.loan.dto.EnquiryResponseDto;
+import com.aurionpro.loan.dto.LoanRequestDto;
+import com.aurionpro.loan.dto.LoanResponseDto;
+import com.aurionpro.loan.dto.LoanSchemeResponseDto;
+import com.aurionpro.loan.dto.PageResponse;
+import com.aurionpro.loan.dto.PageResponseDto;
+import com.aurionpro.loan.dto.UserAdminViewResponse;
+import com.aurionpro.loan.dto.UserRequestDto;
+import com.aurionpro.loan.dto.UserResponseDto;
+import com.aurionpro.loan.entity.Emi;
+import com.aurionpro.loan.entity.Enquiry;
+import com.aurionpro.loan.entity.LoanOfficer;
+import com.aurionpro.loan.entity.LoanRequest;
+import com.aurionpro.loan.entity.LoanScheme;
+import com.aurionpro.loan.entity.Loanstatus;
+import com.aurionpro.loan.entity.User;
+import com.aurionpro.loan.exceptions.UserException;
+import com.aurionpro.loan.repository.EmiRepository;
+import com.aurionpro.loan.repository.EnquiryRepository;
+import com.aurionpro.loan.repository.LoanOfficerRepository;
+import com.aurionpro.loan.repository.LoanRequestRepository;
+import com.aurionpro.loan.repository.LoanSchemeRepository;
+import com.aurionpro.loan.repository.RequiredDocumentsRepository;
+import com.aurionpro.loan.repository.UserRepository;
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
+
+import jakarta.transaction.Transactional;
+
+@Service
+public class UserServiceImpl implements UserService {
+
+	@Autowired
+	private ModelMapper mapper;
+
+	@Autowired
+	private UserRepository userRepo;
+
+	@Autowired
+	private LoanSchemeRepository loanSchemeRepo;
+
+	@Autowired
+	private LoanRequestRepository loanRequestRepo;
+
+	@Autowired
+	private EmiRepository emiRepo;
+
+	@Autowired
+	private EnquiryRepository queryRepo;
+	
+	@Autowired
+	private LoanOfficerRepository loanOfficerRepo;
+	
+	@Autowired
+	private Cloudinary cloudinary;
+
+	@Autowired
+	private RequiredDocumentsRepository requiredDocumentRepository;
+
+
+	@Override
+	public UserResponseDto addUser(UserRequestDto userRequestDto) {
+		System.out.println("UserRequestDto: " + userRequestDto);
+		User user = mapper.map(userRequestDto, User.class);
+		User dbUser = userRepo.save(user);
+
+		UserResponseDto userResponseDto = mapper.map(dbUser, UserResponseDto.class);
+
+		return userResponseDto;
+	}
+
+	@Override
+	public PageResponse<LoanSchemeResponseDto> getAllLoanScheme(int pageSize, int pageNumber) {
+
+		// Adjusting for 0-based index, subtract 1 from pageNumber if it's 1-based.
+		Pageable pageable = PageRequest.of(pageSize, pageNumber);
+
+		// Fetching data from the database
+		Page<LoanScheme> dbUserPage = loanSchemeRepo.findAll(pageable);
+
+		// Mapping the LoanScheme to LoanSchemeResponseDto
+		Page<LoanSchemeResponseDto> loanSchemeResponseDto = dbUserPage
+				.map(loanScheme -> mapper.map(loanScheme, LoanSchemeResponseDto.class));
+
+		// Creating the response
+		PageResponse<LoanSchemeResponseDto> responsePageUser = new PageResponse<>();
+		responsePageUser.setTotalElements(loanSchemeResponseDto.getTotalElements());
+		responsePageUser.setTotalPages(loanSchemeResponseDto.getTotalPages());
+		responsePageUser.setPageSize(loanSchemeResponseDto.getSize());
+		responsePageUser.setLastPage(loanSchemeResponseDto.isLast());
+		responsePageUser.setContents(loanSchemeResponseDto.getContent());
+
+		return responsePageUser;
+	}
+
+
+
+	@Override
+	public EmiResponseDto emiPayment(EmiRequestDto emiRequestDto) {
+
+		Emi emi = mapper.map(emiRequestDto, Emi.class);
+		Emi dbEmi = emiRepo.save(emi);
+
+		EmiResponseDto emiResponseDto = mapper.map(dbEmi, EmiResponseDto.class);
+
+		return emiResponseDto;
+	}
+
+	@Override
+	public PageResponseDto<EmiResponseDto> getAllEmis(int pageSize, int pageNumber) {
+
+		Pageable pageable = PageRequest.of(pageNumber, pageSize);
+
+		Page<Emi> dbEmiPage = emiRepo.findAll(pageable);
+
+		Page<EmiResponseDto> emiResponseDto = dbEmiPage.map(emi -> mapper.map(emi, EmiResponseDto.class));
+
+		PageResponseDto<EmiResponseDto> responsePageEmi = new PageResponseDto<>();
+		responsePageEmi.setTotalElements(emiResponseDto.getTotalElements());
+		responsePageEmi.setTotalPages(emiResponseDto.getTotalPages());
+		responsePageEmi.setPageSize(emiResponseDto.getSize());
+		responsePageEmi.setLastPage(emiResponseDto.isLast());
+		responsePageEmi.setContents(emiResponseDto.getContent());
+
+		System.out.println("dbUserPage: " + dbEmiPage.getContent());
+		System.out.println("loanSchemeResponseDto: " + emiResponseDto.getContent());
+
+		return responsePageEmi;
+	}
+
+	@Transactional
+	@Override
+	public EnquiryResponseDto submitQueries(EnquiryRequestDto enquiryRequestDto) {
+	    // Ensure the user exists
+	    User user = userRepo.findById(enquiryRequestDto.getUserId())
+	            .orElseThrow(() -> new RuntimeException("User not found"));
+
+	    // Fetch the entity to ensure it's attached
+	    Enquiry enquiry = queryRepo.findById(enquiryRequestDto.getUserId())
+	            .orElseThrow(() -> new RuntimeException("Enquiry not found"));
+
+	    // Update fields as necessary
+	    enquiry.setStatus("UNRESOLVED");
+
+	    // Save and flush the updated entity
+	    Enquiry dbEnquiry = queryRepo.saveAndFlush(enquiry);
+
+	    // Map to response DTO
+	    EnquiryResponseDto enquiryResponseDto = mapper.map(dbEnquiry, EnquiryResponseDto.class);
+
+	    return enquiryResponseDto;
+	}
+
+
+	
+	@Override
+	@Transactional
+	public LoanResponseDto uploadFile(MultipartFile file, LoanRequestDto loanRequestDto, int loanSchemeId) throws IOException {
+	    LoanResponseDto response = new LoanResponseDto();
+	    
+	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    
+        String email = authentication.getName();
+     
+        
+        System.out.println(email);
+	    try {
+	      
+	        if (file == null || file.isEmpty()) {
+	            throw new IllegalArgumentException("No file provided.");
+	        }
+
+	        String fileType = file.getContentType();
+	        if (!"application/pdf".equals(fileType) && !"image/jpeg".equals(fileType)) {
+	            throw new IllegalArgumentException("Invalid file type. Only PDF and JPEG are allowed.");
+	        }
+
+	        if (file.getSize() > 5 * 1024 * 1024) {
+	            throw new IllegalArgumentException("File size exceeds the maximum limit of 5 MB.");
+	        }
+
+
+	        Map<String, Object> uploadResult = cloudinary.uploader().upload(file.getBytes(),
+	                ObjectUtils.asMap("resource_type", "auto"));
+	        String documentOneLink = uploadResult.get("url").toString();
+
+	        User user = userRepo.findByEmail(email);
+	        if (user == null )
+	        	throw new UserException("no user found with username: "+email);	
+	       
+	        
+	        LoanScheme loanScheme = loanSchemeRepo.findById(loanSchemeId)
+	                .orElseThrow(() -> new IllegalArgumentException("Invalid loan scheme ID."));
+
+	       
+	               
+	        LoanOfficer loanofficer;
+	        if (loanRequestDto.getOfficer_id() != null) {
+	          
+	            loanofficer = loanOfficerRepo.findById(loanRequestDto.getOfficer_id())
+	                    .orElseThrow(() -> new UserException("Invalid LoanOfficer ID."));
+	        } else {
+	            List<LoanOfficer> loanOfficers = loanOfficerRepo.findAll();
+	            if (loanOfficers.isEmpty()) {
+	                throw new UserException("No Loan Officers available.");
+	            }
+	            loanofficer = loanOfficers.get(new Random().nextInt(loanOfficers.size()));
+	        }
+
+	      
+	        double loanAmount = loanRequestDto.getLoanamount();
+	        int timeInYears = loanRequestDto.getTime();
+	        double interestRate = loanScheme.getInterest();
+
+	        double simpleInterest = (loanAmount * interestRate * timeInYears) / 100;
+	        double totalRepayAmount = loanAmount + simpleInterest;
+	        double monthlyRepayment = totalRepayAmount / (timeInYears * 12);
+
+	        LoanRequest loanRequest = new LoanRequest();
+	        loanRequest.setLoanscheme(loanScheme);
+	        loanRequest.setLoanamount(loanAmount);
+	        loanRequest.setTime(timeInYears);
+	        loanRequest.setRepayamount(totalRepayAmount);
+	        loanRequest.setLoanstatus(Loanstatus.PENDING);
+	        loanRequest.setClosed(false);
+	        loanRequest.setDocumentOneLink(documentOneLink);
+	        loanRequest.setSimpleInterest(simpleInterest);
+	        loanRequest.setUser(user);
+	        loanRequest.setLoanofficer(loanofficer);
+	        loanRequest.setMonthlyRepayment(monthlyRepayment);
+	        LoanRequest savedLoanRequest = loanRequestRepo.save(loanRequest);
+
+	        
+	        response.setLoanid(savedLoanRequest.getId());
+	        response.setUser_id(user.getId());
+	        response.setLoanscheme_id(loanRequestDto.getLoanscheme_id());
+	        response.setDocumentOneLink(documentOneLink);
+	        response.setSimpleInterest(simpleInterest);
+	        response.setTotalRepayAmount(loanAmount + simpleInterest);
+	        response.setMonthlyRepayment(monthlyRepayment);
+	        response.setStatus("SUCCESS");
+	        response.setMessage("File uploaded and loan details saved successfully.");
+	    } catch (Exception e) {
+	        response.setStatus("FAILURE");
+	        response.setMessage(e.getMessage());
+	    }
+
+	    return response;
+	}
+
+
+
+//		@Override
+//		public PageResponse<UserAdminViewResponse> getUserByFirstName(int pageSize, int pageNumber, String firstName) {
+//			Pageable pageable =  PageRequest.of(pageNumber, pageSize);
+//			Page<User> Userpage =  userRepo.findByFirstName(pageable,firstName);
+//			List<User> dbLoanRequest =  Userpage.getContent();
+//			List<UserAdminViewResponse> users =  new ArrayList<>();
+//			dbLoanRequest.forEach((user)->{
+//				UserAdminViewResponse userDto = mapper.map(user, UserAdminViewResponse.class);
+//				users.add(userDto);
+//			});
+//			PageResponse<UserAdminViewResponse> response =  new PageResponse<UserAdminViewResponse>();
+//			response.setContents(users);
+//			response.setLastPage(Userpage.isLast());
+//			response.setPageSize(Userpage.getSize());
+//			response.setTotalElements(Userpage.getTotalElements());
+//			response.setTotalPages(Userpage.getTotalPages());
+//
+//			return response;
+//		}
+
+//		@Override
+//		public UserAdminViewResponse getUserByEmail(String email) {
+//			User user =  userRepo.findAll(email);
+//			if(user ==  null)
+//				throw new UserException("Cannot found the User with emial: "+email);
+//
+//			return mapper.map(user, UserAdminViewResponse.class);
+//		}
+
+	
+
+	@Override
+	public PageResponse<LoanResponseDto> getAllAppliedLoan(int pageSize, int pageNumber) {
+
+		Pageable pageable = PageRequest.of(pageSize , pageNumber);
+
+		Page<LoanRequest> dbLoanRequest = loanRequestRepo.findAll(pageable);
+
+		Page<LoanResponseDto> loanResponseDto = dbLoanRequest.map(loan -> mapper.map(loan, LoanResponseDto.class));
+
+		PageResponse<LoanResponseDto> responsePageLoan = new PageResponse<>();
+		responsePageLoan.setTotalElements(loanResponseDto.getTotalElements());
+		responsePageLoan.setTotalPages(loanResponseDto.getTotalPages());
+		responsePageLoan.setPageSize(loanResponseDto.getSize());
+		responsePageLoan.setLastPage(loanResponseDto.isLast());
+		responsePageLoan.setContents(loanResponseDto.getContent());
+
+		return responsePageLoan;
+
+	}
+
+	@Override
+	public PageResponse<EnquiryResponseDto> getAllQueries(int pageSize, int pageNumber) {
+
+		Pageable pageable = PageRequest.of(pageNumber - 1, pageSize);
+
+		Page<Enquiry> dbQueryPage = queryRepo.findAll(pageable);
+
+		Page<EnquiryResponseDto> queryResponseDto = dbQueryPage
+				.map(query -> mapper.map(query, EnquiryResponseDto.class));
+
+		PageResponse<EnquiryResponseDto> responsePageQuery = new PageResponse<>();
+		responsePageQuery.setTotalElements(queryResponseDto.getTotalElements());
+		responsePageQuery.setTotalPages(queryResponseDto.getTotalPages());
+		responsePageQuery.setPageSize(queryResponseDto.getSize());
+		responsePageQuery.setLastPage(queryResponseDto.isLast());
+		responsePageQuery.setContents(queryResponseDto.getContent());
+
+		return responsePageQuery;
+	}
+
+	
+	
+
+
+
+	@Override
+	public UserAdminViewResponse getUserById(int Id) {
+		Optional<User> user = userRepo.findById(Id);
+		if (user.isEmpty()) {
+			throw new UserException("Cannot found the User with id: " + Id);
+		}
+		User dbUser = user.get();
+		return mapper.map(user, UserAdminViewResponse.class);
+	}
+	
+	@Override
+	public UserAdminViewResponse getUserByEmail(String email) {
+	    User user = userRepo.findByEmail(email);
+	    if (user == null)
+	        throw new UserException("Cannot found the User with email: " + email);
+
+	    return mapper.map(user, UserAdminViewResponse.class);
+	}
+	
+	@Override
+	public PageResponse<UserAdminViewResponse> getUserByFirstName(int pageSize, int pageNumber, String firstName) {
+	    Pageable pageable = PageRequest.of(pageNumber, pageSize);
+	    Page<User> Userpage = userRepo.findByFirstName(pageable, firstName);
+	    List<User> dbLoanRequest = Userpage.getContent();
+	    List<UserAdminViewResponse> users = new ArrayList<>();
+	    dbLoanRequest.forEach((user) -> {
+	        UserAdminViewResponse userDto = mapper.map(user, UserAdminViewResponse.class);
+	        users.add(userDto);
+	    });
+	    PageResponse<UserAdminViewResponse> response = new PageResponse<UserAdminViewResponse>();
+	    response.setContents(users);
+	    response.setLastPage(Userpage.isLast());
+	    response.setPageSize(Userpage.getSize());
+	    response.setTotalElements(Userpage.getTotalElements());
+	    response.setTotalPages(Userpage.getTotalPages());
+
+	    return response;
+	}
+	
+	@Override
+	public PageResponse<UserAdminViewResponse> getAllUser(int pageSize, int pageNumber) {
+		Pageable pageable = PageRequest.of(pageNumber, pageSize);
+		Page<User> Userpage = userRepo.findAll(pageable);
+		List<User> dbLoanRequest = Userpage.getContent();
+		List<UserAdminViewResponse> users = new ArrayList<>();
+		dbLoanRequest.forEach((user) -> {
+			UserAdminViewResponse userDto = mapper.map(user, UserAdminViewResponse.class);
+			users.add(userDto);
+		});
+		PageResponse<UserAdminViewResponse> response = new PageResponse<>();
+		response.setContents(users);
+		response.setLastPage(Userpage.isLast());
+		response.setPageSize(Userpage.getSize());
+		response.setTotalElements(Userpage.getTotalElements());
+		response.setTotalPages(Userpage.getTotalPages());
+
+		return response;
+	}
+
+
+
+	
+
+}

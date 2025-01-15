@@ -1,0 +1,44 @@
+.container.mt-5 {
+    max-width: 1200px;
+    margin: 2rem auto;
+    background-color: #f8f9fa; /* Light grey background */
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    position: relative; /* Necessary for pagination positioning */
+    min-height: 80vh; /* Ensures consistent height */
+  }
+  
+  /* Loan card grid spacing */
+  .loan-requests {
+    margin-bottom: 4rem; /* Space for the pagination */
+  }
+  
+  /* Pagination container */
+  .pagination-container {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+  }
+  
+  /* Pagination styles */
+  .pagination {
+    margin-top: 1.5rem;
+  }
+  
+  .page-item.active .page-link {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .page-item .page-link {
+    color: #007bff;
+  }
+  
+  .page-item .page-link:hover {
+    background-color: #0056b3;
+    color: white;
+  }
+  

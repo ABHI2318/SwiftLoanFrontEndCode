@@ -1,0 +1,136 @@
+<!-- 
+<div class="container mt-4">
+  <h2>Loan Officer Report</h2>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Officer Name</th>
+        <th>Approved Count</th>
+        <th>Rejected Count</th>
+        <th>Pending Count</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let officer of loanOfficers">
+        <td>{{ officer.officerFirstName }} {{ officer.officerLastName }}</td>
+        <td>{{ officer.approvedCount }}</td>
+        <td>{{ officer.rejectedCount }}</td>
+        <td>{{ officer.pendingCount }}</td>
+        <td>
+          <button class="btn btn-info" (click)="viewLoans(officer, 'approved')">View Approved</button>
+          <button class="btn btn-info" (click)="viewLoans(officer, 'rejected')">View Rejected</button>
+          <button class="btn btn-info" (click)="viewLoans(officer, 'pending')">View Pending</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div class="custom-modal" *ngIf="isModalOpen">
+    <div class="custom-modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ status | uppercase }} Loans</h5>
+        <button type="button" class="close-btn" (click)="closeModal()">X</button>
+      </div>
+      <div class="modal-body">
+        <p>Loan Status: <strong>{{ status | uppercase }}</strong></p>
+
+        
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Scheme Name</th>
+              <th>Loan Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let loan of selectedLoans">
+              <td>{{ loan.userFirstName }}</td>
+              <td>{{ loan.userLastName }}</td>
+              <td>{{ loan.schemeName }}</td>
+              <td>{{ loan.loanAmount }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="container mt-4">
+  <h2 class="text-center">Loan Officer Report</h2>
+
+  <!-- Cards for Loan Officer Report -->
+  <div class="card-container">
+    <div class="card" *ngFor="let officer of loanOfficers">
+      <div class="card-body">
+        <h5 class="card-title">{{ officer.officerFirstName }} {{ officer.officerLastName }}</h5>
+        <p class="card-text"><strong>Approved Count:</strong> {{ officer.approvedCount }}</p>
+        <p class="card-text"><strong>Rejected Count:</strong> {{ officer.rejectedCount }}</p>
+        <p class="card-text"><strong>Pending Count:</strong> {{ officer.pendingCount }}</p>
+        <div class="card-actions">
+          <button
+            class="btn btn-info btn-sm btn-spacing btn-approved"
+            (click)="viewLoans(officer, 'approved')"
+          >
+            View Approved
+          </button>
+          <button
+            class="btn btn-info btn-sm btn-spacing btn-rejected"
+            (click)="viewLoans(officer, 'rejected')"
+          >
+            View Rejected
+          </button>
+          <button
+            class="btn btn-info btn-sm btn-spacing btn-pending"
+            (click)="viewLoans(officer, 'pending')"
+          >
+            View Pending
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for Viewing Loans -->
+  <div class="custom-modal" *ngIf="isModalOpen">
+    <div class="custom-modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ status | uppercase }} Loans</h5>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Status:</strong> {{ status | uppercase }}</p>
+
+        <!-- Table for Loans -->
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Scheme Name</th>
+              <th>Loan Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let loan of selectedLoans">
+              <td>{{ loan.userFirstName }}</td>
+              <td>{{ loan.userLastName }}</td>
+              <td>{{ loan.schemeName }}</td>
+              <td>{{ loan.loanAmount }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-" (click)="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

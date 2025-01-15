@@ -1,0 +1,70 @@
+<div class="dashboard-container">
+  <!-- <div class="navbar">
+    
+    <div class="navbar-logo">
+      <img src="assets/swift.jpeg" alt="Logo" />
+      <span><strong>SwiftLoan Loan Officer</strong></span>
+    </div>
+
+   
+    <div class="navbar-menu">
+      <a routerLink="loanrequest" routerLinkActive="active">All Loans Requests</a>
+      <a routerLink="replytoenquiry" routerLinkActive="active">Customer Queries</a>
+      <a routerLink="pendingloanrequest" routerLinkActive="active">Loan Requests</a>
+      <a routerLink="profile">Update Profile</a>
+    </div>
+
+    <div class="right">
+      <div class="profile">
+        
+      </div>
+      <div class="logout">
+        <button (click)="logOut()">Logout</button>
+      </div>
+    </div>
+  </div> -->
+
+    <h1></h1>
+  <!-- Main content area for routed views -->
+  <div class="main-content">
+    <div class="admin-dashboard">
+      <!-- Welcome Section -->
+      <div class="welcome-section">
+        <h1 class="welcome-title">Welcome, Loan Officer</h1>
+        <p class="welcome-subtitle">
+          View loan requests, Approve or Reject Loans, Respond to Queries, and much more with ease.
+        </p>
+      </div>
+    
+      <!-- Overview Section -->
+      <div class="overview">
+        <h2 class="section-title">Dashboard Overview</h2>
+        <div class="statistics">
+          <div class="stat-box">
+            <h4>📄 View All Loan Requests</h4>
+            <p>View loan requests from users</p>
+          </div>
+          <div class="stat-box">
+            <h4>👩‍💼 Customer Queries</h4>
+            <p>View and Respond to User Queries</p>
+          </div>
+          <div class="stat-box">
+            <h4>💼 Approve or Reject Loan Requests</h4>
+            <p>Approve or Reject Loan Requests and give remarks</p>
+          </div>
+          <div class="stat-box">
+            <h4>👥 Update Your Profile</h4>
+            <p> Update your details </p>
+          </div>
+  
+        </div>
+      </div>
+  
+    </div>
+
+   
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+
