@@ -35,7 +35,7 @@ export class ApplyloanComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.loanSchemeId = params['schemeId'];
       if (!this.loanSchemeId) {
-        // console.error('Loan scheme ID is missing.');
+        console.error('Loan scheme ID is missing.');
         // this.toastr.error('Loan scheme ID is missing.', 'Error', {
         //   timeOut: 5000,
         //   progressBar: true,

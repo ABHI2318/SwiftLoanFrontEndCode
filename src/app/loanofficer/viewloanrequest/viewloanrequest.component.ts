@@ -7,12 +7,17 @@ import { LoanRequestService } from 'src/app/services/loan-request/loan-request.s
   styleUrls: ['./viewloanrequest.component.css']
 })
 export class ViewloanrequestComponent implements OnInit {
+  // Existing properties
   loans: any[] = [];
   rejectionRemarks: { [key: number]: string } = {};
   currentPage = 1;
   totalPages = 1;
   pageSize = 3;
   totalElements = 0;
+
+  // NEW: For filtering
+  selectedFilter: string = '';       // The dropdown value
+  filteredLoans: any[] = [];         // A filtered subset of "loans"
 
   constructor(private loanService: LoanRequestService) {}
 
@@ -26,11 +31,27 @@ export class ViewloanrequestComponent implements OnInit {
         this.loans = response.contents;
         this.totalPages = response.totalPages;
         this.totalElements = response.totalElements;
+
+        // Initialize filteredLoans to show all loans by default
+        this.filteredLoans = [...this.loans];
       },
       (error) => {
         console.error('Error fetching loans:', error);
       }
     );
+  }
+
+  // NEW: Filter the loans based on selected status
+  filterLoansByStatus(): void {
+    if (this.selectedFilter) {
+      // Show only loans whose status matches selectedFilter
+      this.filteredLoans = this.loans.filter(
+        (loan) => loan.loanstatus === this.selectedFilter
+      );
+    } else {
+      // If nothing is selected, show all
+      this.filteredLoans = [...this.loans];
+    }
   }
 
   fetchRemarks(loanId: number): void {

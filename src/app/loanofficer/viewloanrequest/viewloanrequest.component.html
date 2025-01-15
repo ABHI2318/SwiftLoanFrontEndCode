@@ -1,9 +1,25 @@
 <div class="container mt-5">
   <h1 class="mb-4">Loan Requests</h1>
 
-  <!-- Card Grid -->
+  <!-- STATUS FILTER DROPDOWN -->
+  <div class="mb-3">
+    <label for="statusFilter" class="form-label">Filter By Status:</label>
+    <select
+      id="statusFilter"
+      class="form-select"
+      [(ngModel)]="selectedFilter"
+      (change)="filterLoansByStatus()"
+    >
+      <option value="">All Status</option>
+      <option value="APPROVED">Approved</option>
+      <option value="PENDING">Pending</option>
+      <option value="REJECTED">Rejected</option>
+    </select>
+  </div>
+
+  <!-- Card Grid (use filteredLoans here instead of loans) -->
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 loan-requests">
-    <div class="col" *ngFor="let loan of loans">
+    <div class="col" *ngFor="let loan of filteredLoans">
       <div class="card border-{{ getStatusColor(loan.loanstatus) }}">
         <div class="card-body">
           <h5 class="card-title">Loan ID: {{ loan.loanid }}</h5>
@@ -37,21 +53,27 @@
   </div>
 
   <!-- Sticky Pagination -->
-  <div class="pagination-container">
-    <nav *ngIf="totalPages > 1">
+  <div class="pagination-container" *ngIf="totalPages > 1">
+    <nav>
       <ul class="pagination justify-content-center">
         <li class="page-item" [class.disabled]="currentPage === 1">
-          <button class="page-link" (click)="changePage(currentPage - 1)">Previous</button>
+          <button class="page-link" (click)="changePage(currentPage - 1)">
+            Previous
+          </button>
         </li>
         <li
           class="page-item"
           *ngFor="let page of paginationArray"
           [class.active]="page === currentPage"
         >
-          <button class="page-link" (click)="changePage(page)">{{ page }}</button>
+          <button class="page-link" (click)="changePage(page)">
+            {{ page }}
+          </button>
         </li>
         <li class="page-item" [class.disabled]="currentPage === totalPages">
-          <button class="page-link" (click)="changePage(currentPage + 1)">Next</button>
+          <button class="page-link" (click)="changePage(currentPage + 1)">
+            Next
+          </button>
         </li>
       </ul>
     </nav>
