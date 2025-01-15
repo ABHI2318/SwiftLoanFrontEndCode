@@ -35,13 +35,13 @@ export class ApplyloanComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.loanSchemeId = params['schemeId'];
       if (!this.loanSchemeId) {
-        console.error('Loan scheme ID is missing.');
-        this.toastr.error('Loan scheme ID is missing.', 'Error', {
-          timeOut: 5000,
-          progressBar: true,
-          closeButton: true,
-          positionClass: 'toast-top-right',
-        });
+        // console.error('Loan scheme ID is missing.');
+        // this.toastr.error('Loan scheme ID is missing.', 'Error', {
+        //   timeOut: 5000,
+        //   progressBar: true,
+        //   closeButton: true,
+        //   positionClass: 'toast-top-right',
+        // });
       }
     });
   }
@@ -88,7 +88,7 @@ export class ApplyloanComponent implements OnInit {
       formData.append('bankFile', this.file3);
   
       this.loanService.uploadFile(formData, this.loanSchemeId).subscribe({
-        next: response => {
+        next: (response) => {
           console.log('Loan application successful:', response);
           this.toastr.success('Loan application submitted successfully.', 'Success', {
             timeOut: 5000,
@@ -97,15 +97,26 @@ export class ApplyloanComponent implements OnInit {
             positionClass: 'toast-top-right',
           });
         },
-        error: error => {
-          console.error('Error submitting loan application:', error);
-          this.toastr.error('Failed to submit the application. Please try again.', 'Error', {
-            timeOut: 5000,
-            progressBar: true,
-            closeButton: true,
-            positionClass: 'toast-top-right',
-          });
-        }
+        error: (err) => {
+          console.error('Error submitting loan application:', err);
+  
+          // Display the specific message if returned by the backend
+          if (err.error && err.error.message) {
+            this.toastr.error(err.error.message, 'Error', {
+              timeOut: 5000,
+              progressBar: true,
+              closeButton: true,
+              positionClass: 'toast-top-right',
+            });
+          } else {
+            this.toastr.error('Failed to submit the application. Please try again.', 'Error', {
+              timeOut: 5000,
+              progressBar: true,
+              closeButton: true,
+              positionClass: 'toast-top-right',
+            });
+          }
+        },
       });
     } else {
       this.toastr.warning('Please fill all the fields and upload all files.', 'Warning', {

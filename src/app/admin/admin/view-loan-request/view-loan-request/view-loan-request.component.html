@@ -11,7 +11,7 @@
   <!-- Loan Request Cards -->
   <div class="loan-officers-grid">
     <div *ngFor="let loanRequest of loanRequests | filter: filterText" class="loan-officer-card">
-      <h3 class="officer-name">{{ loanRequest.schemeName }}</h3>
+      <h3 class="officer-name">{{ loanRequest.schemeName | titlecase}}</h3>
       <div class="officer-details">
         <p><strong>Loan Amount:</strong> {{ loanRequest.loanamount }}</p>
         <p><strong>Duration:</strong> {{ loanRequest.time }} Years</p>
