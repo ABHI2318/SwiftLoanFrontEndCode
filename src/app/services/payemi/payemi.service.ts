@@ -15,4 +15,7 @@ export class PaymentService {
     return this.http.get(`${this.apiUrl}/${emiId}`);
 
   }
+  getPaymentStatus(emiId: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/status/${emiId}`);
+  }
 }

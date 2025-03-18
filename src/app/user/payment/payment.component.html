@@ -15,7 +15,7 @@
 
   <div id="card-errors" role="alert" class="text-danger"></div>
 
-  <button class="btn btn-primary btn-block" (click)="handlePayment()">Pay Now {{amount}}</button>
+  <button *ngIf="!isPaid" class="btn btn-primary btn-block" (click)="handlePayment()">Pay Now {{amount}}</button>
 </div>
 
 

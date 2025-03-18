@@ -15,6 +15,8 @@ export class PaymentComponent implements OnInit {
   card: any;
   amount: number = 0;
   emiId: any = "";
+  isPaid: boolean = false;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -47,8 +49,10 @@ export class PaymentComponent implements OnInit {
 
   async handlePayment() {
     const stripe_secret_key = "sk_test_51QclP3P2dfRpkybIDbWEKP4p6sBupQXvwPI8GZAhOtdPNfEqmXgtBQGzHkd2cYN1gBOcxluzNY2CXhhFQa76w2xK004NhU0hF2";
-    
+    this.isPaid = true;
     if (this.amount <= 0) {
+      
+
       this.toastr.warning('Please enter a valid amount.', 'Warning', {
         timeOut: 5000,
         progressBar: true,
